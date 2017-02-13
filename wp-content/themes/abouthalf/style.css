@@ -1,0 +1,744 @@
+/*
+Theme Name: Abouthalf
+Theme URI: http://abouthalf.com
+Description: The highly readable theme from Abouthalf.com
+Version: 1.0
+Author: Michael Barrett
+Tags: 1 coluumn, widgets, menu, post formats
+
+A theme designed to be simple to maintain, with minimal files, and an emphasis on content over branding and other junk.
+Features a custom gallery implementation, powered by Bootstrap's carousel
+
+Works with IE8+ and modern browsers.
+
+(IE7 is usable, just less purty)
+
+*/
+
+@import url('css/normalize.css');
+@import url('css/fonts/bariol/bariol.css');
+@import url('css/bootstrap.min.css');
+@import url('css/fonts/fontawesome/css/font-awesome.css');
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* base typography */
+html
+{
+	color: #444;
+	font-size: 16px;
+	font-size: 1em;
+	line-height: 1.5em;
+	font-family: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", serif;
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, .header-light {font-family: BariolLight, sans-serif; margin: 0; font-weight: normal;}
+h3, h4, h5, h6, .header-bold, .wp-caption, .poster-title {font-family: BariolRegular, sans-serif; margin: 0; font-weight: normal;}
+
+
+/* links */
+a {color: #369; text-decoration: none;}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: inherit;}
+
+/* universal margin-bottom */
+h1,h2,h3,h4,h5,h6,hgroup,
+ul,ol,dd,
+p,figure,
+pre,table,fieldset,hr,
+.post.format-image .entry img,
+form, .carousel,
+.entry p img.alignright,
+.entry p img.alignleft,
+div[class^="form-"],
+.post.format-image .entry .wp-caption
+{
+	margin-top: 0;
+	margin-bottom: 24px;
+	margin-bottom:1.5rem;
+}
+
+ul ul, p:empty {margin-bottom: 0;}
+
+/* font -sizes */
+
+.small, 
+small,
+#ft nav > ul > li
+{
+	font-size: 14px;
+	font-size: 0.875rem; /* 14px */
+	line-height: 1.714; /* 24px */
+}
+
+h1, .header
+{
+	font-size: 48px;
+	font-size: 3rem; /* 48px */
+	line-height: 1; /* 48px */
+}
+
+aside, .aside
+{
+	font-size: 24px;
+	font-size: 1.5rem;
+	line-height: 1.5;
+}
+
+h2, .sub-header
+{
+	font-size: 32px;
+	font-size: 2rem; /* 32px */
+	line-height: 1.5; /* 48px */
+}
+
+h3, .big, big
+{
+	font-size: 24px;
+	font-size: 1.5rem;
+	line-height: 1.5;
+}
+
+h4, h5, h6, .body
+{
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+/* one grid to rule them all */
+.col
+{
+	width: 232px;
+	margin-left: 24px;
+	margin-left: 1.5rem;
+}
+
+.col:first-child {margin-left: 0;}
+
+/* utilities */
+
+hr
+{
+	height: 1px;
+	width: 100%;
+	margin-top: 23px;
+	margin-top: 1.4375rem;
+	border: none;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(left, #ffffff 0%, #e0e8f0 47%, #ffffff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(47%,#e0e8f0), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #ffffff 0%,#e0e8f0 47%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #ffffff 0%,#e0e8f0 47%,#ffffff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #ffffff 0%,#e0e8f0 47%,#ffffff 100%); /* IE10+ */
+	background: linear-gradient(to right, #ffffff 0%,#e0e8f0 47%,#ffffff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+}
+
+.hide {display: none;}
+
+.aligncenter {text-align: center;}
+.alignright {text-align: right;}
+.alignleft {text-align: left;}
+
+div.aligncenter, .aligncenter img, img.aligncenter {margin-left: auto; margin-right: auto;}
+div.alignright, img.alignright {float: right; margin-left: 24px; margin-left: 1.5rem;}
+div.alignleft, img.alignleft {float: left; margin-right: 24px; margin-right: 1.5rem;}
+
+
+label {display: block;}
+label .required {color: #369; font-weight: bold;}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+textarea
+{
+	background: #f5f7fa;
+	width: 512px;
+	color: #555;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	font-size: 0.875rem; /* 14px */
+	line-height: 1.714; /* 24px */
+}
+
+input[type="submit"],
+button
+{
+	background: #369;
+	border: none;
+	color: #fff;
+	font-family: BariolRegular, sans-serif;
+	font-size: 16px;
+	font-size: 1rem; /* 14px */
+	line-height: 1.5; /* 24px */
+}
+
+input[type="submit"]:active,
+button:active
+{
+	background: #003366;
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+input[type="submit"],
+button,
+fieldset
+{
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+fieldset {border: 1px solid #ddd;}
+
+fieldset legend {padding: .5em;}
+
+/* generic layout */
+
+html, body {background: #f5f7fa}
+
+#hd
+{
+	background: #e0e8f0;
+	text-align: right;
+	padding: 1em;
+	margin-bottom: 0;
+}
+
+#hd h1:after {content: ' - ';}
+
+#hd h1,
+#hd p
+{
+	display: inline;
+	font-family: BariolRegular, sans-serif;
+	font-size: 1em;
+	line-height: 1.5;
+}
+
+#hd h1 em {color: #000; font-style: normal}
+#hd h1 em span {color: #999;}
+
+
+#ft {text-align: center;}
+#ft hr:first-child {margin-bottom: 3em;}
+
+#ft img.logo 
+{
+	width: 250px;
+	height: auto;
+}
+
+#ft nav {margin-bottom: 1.5em;}
+
+#ft nav ul,
+#ft nav ul > li > ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+#ft nav > ul > li
+{
+	margin: 0;
+	padding: .5em;
+	display: inline;
+	display: inline-block;
+	vertical-align: top;
+	width: auto;
+	max-width: 256px;
+}
+
+#ft nav > ul.menu > li {width: auto;}
+
+#ft nav > ul > li h3 { border-bottom: 2px solid #369; display: inline-block;}
+
+
+#main
+{
+	background: #fff;
+	width: 1024px;
+	margin: 0 auto;
+	border: 16px solid #369;
+	border-left: none;
+	border-right: none;
+}
+
+.posts article 
+{
+	clear: left;
+	margin-bottom: 4rem;
+}
+
+.posts article + hr + article {margin-top: 3em;}
+
+.posts article.search-results,
+.posts article.archives
+{
+	min-height: 768px;
+}
+
+.posts article:after
+{
+	display: block;
+	content: '.';
+	visibility: hidden;
+	height: 0;
+	clear: both;
+}
+
+/* post header color */
+.posts article .post-head .post-title,
+.posts article .post-head .post-title a {color: #f60;}
+
+
+
+/* standard post headers */
+.posts article.format-standard .post-head
+{
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 256px;
+}
+
+.posts article.format-standard .post-head img
+{
+	display: block;
+	width: 100% !important;
+	height: auto !important;
+	margin: 0;
+}
+
+
+.posts article.format-standard .post-head .post-title
+{
+	background: transparent;
+	padding: 0 0 1em 1em;
+	margin-bottom: 0;
+}
+
+.posts article.format-standard .post-head .postmetadata
+{
+	padding: 0 32px;
+	padding: 0 2rem;
+}
+
+/* formatted post heads */
+.post .post-head
+{
+	float: none;
+	width: auto;
+	padding: 0 24px;
+	padding: 0 1.5rem;
+}
+
+.post .post-head .postmetadata {padding: 0;}
+
+.post .post-head .post-title {	background: none;	color: inherit;	padding: 0;}
+
+.posts article.format-standard:first-child .entry,
+.posts article.format-aside:first-child .entry,
+.posts article.format-quote:first-child .entry,
+.posts article.format-link:first-child .entry,
+.posts article.format-standard:first-child .post-head .post-title
+{
+	padding-top: 24px;
+	padding-top: 1.5rem;
+}
+
+.posts article.format-standard .entry
+{
+	width: 720px;
+	float: left;
+	margin: 0 24px;
+	
+	/* see formatting rules below */
+	-webkit-column-gap: 1.5rem;
+	-moz-column-gap: 1.5rem;
+	column-gap: 1.5rem;
+}
+
+.post .entry img
+{
+	display: block;
+	border: 8px solid #e0e8f0;
+}
+
+.post .entry .wp-caption
+{
+	color: #999;
+	width: auto !important;	
+}
+
+/* post formats */
+
+.post.format-link,
+.post.format-aside,
+.post.format-image,
+.post.format-gallery,
+.post.format-quote {text-align: right;}
+
+.post.format-link .entry,
+.post.format-quote .entry,
+.post.format-aside .entry
+{
+	padding: 0 24px 0 272px;
+	padding: 0 1rem 0 17.5rem;
+}
+
+.post.format-image .entry,
+.post.format-audio .entry,
+.post.format-video .entry,
+.post.format-gallery .entry
+{
+	background: #fbfcfd;
+	padding: 0 24px;
+	padding: 0 1.5rem;
+	width: 100%;
+	font-style: normal;
+}
+
+.post.format-gallery .entry {background: none;}
+
+.post.format-image .entry img
+{
+	display: block;
+	border: none;
+	height: auto !important;
+	width: auto !important;
+	margin: 0 auto;
+}
+
+.post.format-image .entry .wp-caption
+{
+	position: relative;
+	width: auto !important; /* override WP width attribute, allow image to stretch to full width */
+	/* stretch gallery to full width, allow any text content to remain inset with margin */
+	margin-left: -24px;
+	margin-right: -24px;
+	margin-left: -1.5rem;
+	margin-right: -1.5rem;
+
+}
+
+.post.format-image .entry .wp-caption > .wp-caption-text
+{
+  color: #fff;
+  font-family: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", serif;
+  font-size: 16px;
+  line-height: 1.5;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 0;
+  padding: 24px;
+  padding: 1.5rem;
+  background: #333333;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.post.format-image .entry p:last-child
+{
+	padding-bottom: 24px;
+	padding-bottom: 1.5rem;
+}
+
+.post.format-image .entry p:only-child {padding-bottom: 0;}
+
+.post.format-standard .entry a {text-decoration: underline;}
+
+/* gallery */
+/**
+Galleries are re-implemented as unordered lists. Addtional styles make lists compatible with bootstrap.
+**/
+.carousel
+{
+	background: #fbfcfd;
+	/* stretch gallery to full width, allow any text content to remain inset with margin */
+	margin-left: -24px;
+	margin-right: -24px;
+	margin-left: -1.5rem;
+	margin-right: -1.5rem;
+}
+.carousel-inner {margin: 0; padding: 0;}
+.carousel .item
+{
+	height: 512px;
+	line-height: 512px;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.carousel .item img
+{
+	display: inline;
+	vertical-align: middle;
+	border: none;
+}
+
+.carousel-control
+{
+	font-size: 24px;
+	font-size: 1.5rem;
+	line-height: 40px;
+}
+
+.carousel-caption
+{
+	color: #fff;
+	line-height: 1.5;
+	padding: 24px;
+  padding: 1.5rem;
+}
+
+
+
+
+/* Responsive!*/
+
+/* media query debugging */
+/*
+@media (max-width: 767px) {.entry {background: grey;}}
+@media (max-width: 480px) {.entry {background: blue;}}
+@media (min-width: 768px) and (max-width: 1024px) {.entry {background: silver;}}
+@media (min-width: 1280px) and (min-height: 1000px) {.entry {background: pink;}}
+*/
+
+/* tablets */
+@media (max-width: 1024px)
+{	
+	#main {width: 768px;}
+	
+	.posts article.format-standard .entry
+	{
+		width: 464px;
+	}
+	
+	.post.format-image .entry img,
+	.post.format-gallery .entry img,
+	.post .entry img
+	{
+		height: auto !important;
+		max-width: 100% !important;
+	}
+	
+	.posts article.format-standard .entry.col2sm
+	{
+		-webkit-column-count: 2;
+		-moz-column-count: : 2;
+		column-count: 2;
+	}
+	
+	.posts article.format-standard .entry.col2sm img,
+	.posts article.format-standard .entry.col2sm .wp-caption {width: 100% !important; height: auto !important;}
+	
+	.posts article.format-standard .entry.col2sm img.alignright,
+	.posts article.format-standard .entry.col2sm img.alignleft,
+	.posts article.format-standard .entry.col2sm .wp-caption.alignright,
+	.posts article.format-standard .entry.col2sm .wp-caption.alignleft {margin: 0; float: none;}
+	
+}
+
+/* phones and small tablets  */
+@media (max-width: 767px)
+{	
+	#main {width: auto;}
+	
+	.posts article.format-standard .entry
+	{
+		width: auto !important;
+	}
+
+	.posts article.format-standard .post-head
+	{
+		float: none;
+		width: auto;
+	}
+	
+	.posts article.format-standard .post-head img
+	{
+		display: none;
+	}
+	
+	.posts article.format-standard .entry
+	{
+		float: none;
+		width: auto;
+		margin: 0;
+		padding: 1.5rem;
+	}
+	
+	.post.format-image .entry img,
+	.post.format-gallery .entry img,
+	.post .entry img
+	{
+		height: auto !important;
+		max-width: 100% !important;
+	}
+	
+	.posts article.format-standard .entry.col2sm
+	{
+		-webkit-column-count: 1;
+		-moz-column-count: : 1;
+		column-count: 1;
+	}
+	
+	.post.format-link .entry,
+	.post.format-quote .entry,
+	.post.format-aside .entry
+	{
+		padding: 0 24px 0 24px;
+		padding: 0 1rem 0 1rem;
+	}
+	
+	#ft nav > ul > li
+	{
+		display: block;
+		width: auto;
+		margin: 0 auto 1.5rem auto;
+		max-width: auto;
+	}
+	
+	#ft nav ul.menu li
+	{
+		display: inline-block;
+	}
+	
+	.searchform
+	{
+		width: 80%;
+		margin: 0 auto;
+	}
+	
+	.searchform input[type="text"] {width: 60%;}
+	
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	input[type="search"],
+	textarea
+	{
+		width: 100%;
+	}
+	
+}
+
+
+/* small desktops and landscape tablets (min-width: 769px) and  */
+@media (min-width: 1024px)
+{
+	/* #main uses default width here */
+	.post.format-image .entry img,
+	.post.format-gallery .entry img,
+	.post .entry img
+	{
+		height: auto !important;
+		max-width: 100% !important;
+	}
+	
+	.posts article.format-standard .entry.col2sm
+	{
+		-webkit-column-count: 2;
+		-moz-column-count: : 2;
+		column-count: 2;
+	}
+	
+	.posts article.format-standard .entry.col3sm
+	{
+		-webkit-column-count: 3;
+		-moz-column-count: : 3;
+		column-count: 3;
+	}
+	
+	.posts article.format-standard .entry.col4sm
+	{
+		-webkit-column-count: 4;
+		-moz-column-count: : 4;
+		column-count: 4;
+	}
+	
+	.posts article.format-standard .entry.col2sm img,
+	.posts article.format-standard .entry.col3sm img,
+	.posts article.format-standard .entry.col4sm img,
+	.posts article.format-standard .entry.col2sm .wp-caption,
+	.posts article.format-standard .entry.col3sm .wp-caption,
+	.posts article.format-standard .entry.col4sm .wp-caption {width: 100% !important; height: auto !important;}
+	
+	.posts article.format-standard .entry.col2sm img.alignright,
+	.posts article.format-standard .entry.col2sm img.alignleft,
+	.posts article.format-standard .entry.col3sm img.alignright,
+	.posts article.format-standard .entry.col3sm img.alignleft,
+	.posts article.format-standard .entry.col4sm img.alignright,
+	.posts article.format-standard .entry.col4sm img.alignleft,
+	.posts article.format-standard .entry.col2sm .wp-caption.alignright,
+	.posts article.format-standard .entry.col3sm .wp-caption.alignright,
+	.posts article.format-standard .entry.col4sm .wp-caption.alignright,
+	.posts article.format-standard .entry.col2sm .wp-caption.alignleft,
+	.posts article.format-standard .entry.col3sm .wp-caption.alignleft,
+	.posts article.format-standard .entry.col4sm .wp-caption.alignleft {margin: 0; float: none;}
+	
+}
+
+/* big honking desktops */
+@media (min-width: 1280px) and (min-height: 900px)
+{
+	#main {width: 1280px;}
+	
+	/* .entry {background: blue;}  *//* debug! */
+	
+	.posts article.format-standard .entry {width: 744px;} /* maintain readable line length for unformatted blogs */
+	
+	.posts article.format-standard .entry.col3bg,
+	.posts article.format-standard .entry.col4bg {width: 976px;}
+	
+	.posts article.format-standard .entry.col2bg
+	{
+		-webkit-column-count: 2;
+		-moz-column-count: : 2;
+		column-count: 2;
+	}
+	
+	.posts article.format-standard .entry.col3bg
+	{
+		-webkit-column-count: 3;
+		-moz-column-count: : 3;
+		column-count: 3;
+	}
+	
+	.posts article.format-standard .entry.col4bg
+	{
+		-webkit-column-count: 4;
+		-moz-column-count: : 4;
+		column-count: 4;
+	}
+	
+	.posts article.format-standard .entry.col2bg img,
+	.posts article.format-standard .entry.col3bg img,
+	.posts article.format-standard .entry.col4bg img,
+	.posts article.format-standard .entry.col2bg .wp-caption,
+	.posts article.format-standard .entry.col3bg .wp-caption,
+	.posts article.format-standard .entry.col4bg .wp-caption {width: 100% !important; height: auto !important;}
+	
+	.posts article.format-standard .entry.col2bg img.alignright,
+	.posts article.format-standard .entry.col2bg img.alignleft,
+	.posts article.format-standard .entry.col3bg img.alignright,
+	.posts article.format-standard .entry.col3bg img.alignleft,
+	.posts article.format-standard .entry.col4bg img.alignright,
+	.posts article.format-standard .entry.col4bg img.alignleft,
+	.posts article.format-standard .entry.col2bg .wp-caption.alignright,
+	.posts article.format-standard .entry.col3bg .wp-caption.alignright,
+	.posts article.format-standard .entry.col4bg .wp-caption.alignright,
+	.posts article.format-standard .entry.col2bg .wp-caption.alignleft,
+	.posts article.format-standard .entry.col3bg .wp-caption.alignleft,
+	.posts article.format-standard .entry.col4bg .wp-caption.alignleft  {margin: 0; float: none;}
+	
+}

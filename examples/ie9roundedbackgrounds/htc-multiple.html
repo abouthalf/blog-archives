@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>IE9 Rounded Gradient Backgrounds</title>
+		<style type="text/css" media="screen">
+			body
+			{
+				padding: 50px;
+				font-family: Helvetica, Arial, sans-serif;
+			}
+			
+			.box,
+			textarea,
+			input[type=button],
+			input[type=submit]
+			{
+				background-color: #eee;
+				background-repeat: repeat-x;
+				background-position: 0 0;
+
+			}
+			
+			.box,
+			textarea,
+			input[type=button],
+			input[type=submit]
+			{
+				border-radius: 10px;
+				-moz-border-radius: 10px;
+				-webkit-border-radius: 10px;
+
+				border: 1px solid #999;
+
+				-webkit-box-shadow: 0px 2px 4px #999;
+				-moz-box-shadow: 0px 2px 4px #999;
+				box-shadow: 0px 2px 4px #999;
+				
+				margin: 0 0 16px;
+				display: block;
+			}
+			
+			.box, textarea {padding: 10px;}
+			
+			/* faulty gradient background example */
+			.example,
+			input.example
+			{
+				border-radius: 15px;
+				-moz-border-radius: 15px;
+				-webkit-border-radius: 15px;
+
+				border: 1px solid #aaa;
+
+				-webkit-box-shadow: 0px 2px 4px #999;
+				-moz-box-shadow: 0px 2px 4px #999;
+				box-shadow: 0px 2px 4px #999;
+				
+				margin: 0 0 16px;
+				padding: 10px;
+				
+				background-color: #feccb1; /* old browsers */
+				background: -moz-linear-gradient(top, #feccb1 0%, #f17432 50%, #ea5507 51%, #fb955e 100%); /* firefox */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feccb1), color-stop(50%,#f17432), color-stop(51%,#ea5507), color-stop(100%,#fb955e)); /* webkit */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', endColorstr='#fb955e',GradientType=0 ); /* ie */
+			}
+			
+			/* working background examples */
+			.info,
+			input.info
+			{
+				background-color: #ddf1f9; /* old browsers */
+				background: -moz-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%); /* firefox */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feffff), color-stop(35%,#ddf1f9), color-stop(100%,#a0d8ef)); /* webkit */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef',GradientType=0 ); /* ie */	
+			}
+			
+			.success,
+			input.success
+			{
+				background-color: #e4efc0; /* old browsers */
+				background: -moz-linear-gradient(top, #e4efc0 0%, #abbd73 100%); /* firefox */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4efc0), color-stop(100%,#abbd73)); /* webkit */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4efc0', endColorstr='#abbd73',GradientType=0 ); /* ie */
+			}
+			
+			.warn,
+			input.warn
+			{
+				background-color: #fefcea; /* old browsers */
+				background: -moz-linear-gradient(top, #fefcea 0%, #f1da36 100%); /* firefox */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefcea), color-stop(100%,#f1da36)); /* webkit */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 ); /* ie */
+			}
+			
+			.error,
+			input.error
+			{
+				background-color: #feccb1; /* old browsers */
+				background: -moz-linear-gradient(top, #feccb1 0%, #f17432 50%, #ea5507 51%, #fb955e 100%); /* firefox */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feccb1), color-stop(50%,#f17432), color-stop(51%,#ea5507), color-stop(100%,#fb955e)); /* webkit */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', endColorstr='#fb955e',GradientType=0 ); /* ie */
+			}
+			
+			.oatmeal,
+			input.oatmeal
+			{
+				background-color: #d5cea6; /* old browsers */
+				background: -moz-linear-gradient(top, #d5cea6 0%, #c9c190 40%, #b7ad70 100%); /* firefox */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d5cea6), color-stop(40%,#c9c190), color-stop(100%,#b7ad70)); /* webkit */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5cea6', endColorstr='#b7ad70',GradientType=0 ); /* ie */
+			}
+		</style>
+		<!--[if  ie 9]>
+		<style type="text/css" media="screen">
+			.filter
+			{
+				behavior: url(ie9-gradient-fix.htc);
+			}
+		</style>
+		<![endif]-->
+	</head>
+	<body>
+		<h1>Rounded Corners with Gradient Backgrounds in IE 9</h1>
+		
+		<h2>Broken gradient background</h2>
+		
+		<div class="example">
+			<p>This box should have a gradient background and rounded corners in current versions of Safari, Chrome, and Firefox (3.5+)</p>
+			<p>In IE 8, this box should have a simple gradient background and square corners</p>
+			<p>In IE 9 this box will have rounded corners, with a gradient background which spills out of the borders.</p>
+		</div>
+		
+		<h2>Working gradient backgrounds</h2>
+		
+		<p>These boxes should have gradient backgrounds and rounded corners in Safari, Chrome, Firefox 3.6, and IE 9</p>
+		
+		<p>In IE 8, these boxes should have simple gradient backgrounds and square corners.</p>
+		
+		<div class="box info filter">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+		</div>
+		
+		<div class="box success  filter">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		
+		<div class="box oatmeal filter">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		
+		<div class="box warn filter">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		
+		<div class="box error filter">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		
+
+		
+		<form action="htc-multiple.html#" method="get" accept-charset="utf-8">
+			<fieldset class="">
+				<legend>Form Elements Too</legend>
+				<textarea class="info filter" rows="8" cols="60">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+				<input type="button" value="Silly button" class="info filter">
+				<input type="submit" value="Serious Submit" class="warn filter">
+				<input type="submit" value="Shiny Error" class="error filter">
+			</fieldset>
+
+		</form>
+		
+		<p><small><a href="http://www.colorzilla.com/gradient-editor/">Gradients generated by the Ultimate CSS Gradient Generator</a></small></p>
+	</body>
+</html>

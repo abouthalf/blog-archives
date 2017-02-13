@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Media Queries with EM units</title>
+	<meta name="viewport" content="width=device-width">
+	<style type="text/css">
+		html, body 
+		{
+			padding: 0;
+			margin: 0;
+			font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+			font-weight: 300;
+			font-size: 32px; // be nice to old IE
+			font-size: 2em;
+			line-height: 1.5;
+		}
+
+		code, pre 
+		{
+			font-size: 16px;
+		}
+
+		article, header, p 
+		{
+			margin-bottom: 16px;
+			margin-bottom: 1rem;
+		}
+
+		article 
+		{
+			padding: 1em;
+		}
+
+		@media screen and (max-width: 37.5em) 
+		{
+			/* small / phone */
+			body {background: #eee;}
+			.medium, .large 
+			{
+				display: none;
+			}
+		}
+
+		@media screen and (min-width: 37.5em) and (max-width: 64em) 
+		{
+			/* medium / tablet */
+			body {background: #B8C8D7;}
+			.small, .large 
+			{
+				display: none;
+			}
+		}
+
+		@media screen and (min-width: 64em) 
+		{
+			/* large / desktop */
+			body {background: #94D7AA;}
+			.small, .medium
+			{
+				display: none;
+			}
+		}
+		
+	</style>
+	<!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<article class="small">
+		<header>
+			<h1>Small screens, like phones</h1>
+		</header>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<code><pre>
+@media screen and (max-width: 37.5em) 
+{
+	/* small / phone */
+}</pre></code>
+	</article>
+
+	<article class="medium">
+		<header>
+			<h1>Medium screens, like tablets</h1>
+		</header>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<code><pre>
+@media screen and (min-width: 37.5em) and (max-width: 64em) 
+{
+	/* medium / tablet */
+}</pre></code>
+	</article>
+
+	<article class="large">
+		<header>
+			<h1>Large screens, like desktops</h1>
+		</header>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<code><pre>
+@media screen and (min-width: 64em) 
+{
+	/* large / desktop */
+}</pre></code>
+	</article>
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-23543919-1']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+		})();
+	</script>
+</body>
+</html>

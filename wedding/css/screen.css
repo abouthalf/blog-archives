@@ -1,0 +1,141 @@
+
+/* destroy browser defaults */
+html, body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,td,img, address {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+img, input {
+	vertical-align: middle;
+}
+
+address {
+	display: block;
+	font-style: normal;
+	
+}
+
+/* typography */
+
+body {
+	font-size: 12px;
+	line-height: 1.5;
+	font-family: Arial, sans-serif;
+}
+
+p, ul, ol {
+	margin-bottom: 18px;
+}
+
+a {
+	color: #336699;
+	text-decoration: none;
+}
+
+ul {
+	list-style-type:  disc;
+	margin-left:  2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #666;
+	margin-bottom: 18px;
+	font-weight: normal;
+	clear:  both;
+}
+
+h1 {
+	font-size: 24px;
+	line-height: 1.5;
+}
+
+h2 {
+	font-size: 18px;
+	line-height: 1;
+}
+
+h3, h4, h5, h6 {
+	font-size: 12px;
+	line-height: 1.5;
+	color: #333;
+	font-weight: bold;
+}
+
+/* Layout */
+
+body {
+	background:  #fff;
+}
+
+h1#header {
+	text-shadow: 1px 1px 3px black;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-image: url(../images/header.jpg);
+	background-color: #000;
+	height: 198px;
+	position:  relative;
+	color: #fff;
+}
+
+
+h1#header span {
+	position: absolute;
+	bottom: 0;
+	left: 20px;
+}
+
+#contentFrame {
+	margin: 1em;
+}
+
+#main {
+	text-align: center;
+	width: 60%;
+	margin: 0 auto 0 auto;
+	border-bottom:  1px solid #ccc;
+}
+
+#main h2 {
+	font-size: 24px;
+	line-height: 1.5;
+	text-shadow: 1px 2px 3px #999;
+}
+
+#main p {
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+#contentFrame .content {
+	width: 50%;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#contentFrame .content .contentBox {
+	margin: 1em;
+}
+
+#contentFrame .insetMap {
+	float: right;
+	width: 325px;
+	height: 252px;
+	margin: 9px;
+	border: 1px solid #ccc;
+}
+
+#footer {
+	text-align: center;
+	color: #666;
+	margin: 18px;
+	border-top: 1px solid #ccc;
+}
+
+.divider {
+	height: 0px;
+	overflow: hidden;
+	clear:  both;
+}

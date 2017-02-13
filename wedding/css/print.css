@@ -1,0 +1,101 @@
+
+/* destroy browser defaults */
+html, body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,td,img, address {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+img, input {
+	vertical-align: middle;
+}
+
+address {
+	display: block;
+	font-style: normal;
+	
+}
+
+/* typography */
+
+body {
+	font-size: 12pt;
+	line-height: 1.5;
+	font-family: Arial, sans-serif;
+}
+
+p, ul, ol {
+	margin-bottom: 18pt;
+}
+
+a {
+	color: #896EA0;
+	text-decoration: none;
+}
+
+ul {
+	list-style-type:  disc;
+	margin-left:  2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #666;
+	margin-bottom: 18pt;
+	font-weight: normal;
+	clear:  both;
+}
+
+h1 {
+	font-size: 24pt;
+	line-height: 1.5;
+}
+
+h2 {
+	font-size: 18pt;
+	line-height: 1;
+}
+
+h3, h4, h5, h6 {
+	font-size: 12pt;
+	line-height: 1.5;
+	color: #333;
+	font-weight: bold;
+}
+
+/* Layout */
+
+body {
+	background:  #fff;
+	padding: 1em;
+}
+
+h1#header {
+	background: #fff;
+	position:  relative;
+	color: #333;
+}
+
+#main br {display: none;}
+
+#contentFrame .content {
+
+	margin: 0;
+	padding: 0;
+}
+
+#contentFrame .content .contentBox {
+}
+
+#contentFrame .insetMap {
+	width: 325px;
+	height: 252px;
+	margin: 9px;
+	border: 1px solid #ccc;
+}
+
+#footer {
+	text-align: center;
+	color: #666;
+	margin: 18px;
+	border-top: 1px solid #ccc;
+}

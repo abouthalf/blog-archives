@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>A flexible grid with vertical alignment</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />	
+	<!--[if IE]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	<!--[if lte IE 7]>
+	<style media="all">
+	/* LOL IE 7 */
+	.s1, .s2, .s3, .s4 {display: inline;}
+	</style>
+	<![endif]-->
+</head>
+
+<body id="home">
+
+<div class="container">
+	<h1 class="c">A flexible grid with vertical alignment</h1>
+	<article class="row">
+		
+		<div class="s1 m r">
+			<h2>Use inline-block instead of float</h2>
+		</div>
+		
+		<div class="s3 m l">
+			<p><code>display: inline-block</code> allows for vertical and horizontal alignment within your grid. Grid systems which use floats will always align to the top of current line.</p>
+		</div>
+		
+	</article>
+	
+	<hr />
+	
+	<article class="row">
+		<div class="s4">
+			<p class="header r"><em>Grid columns are displayed as inline-blocks and are contained within rows.</em></p>
+			<p class="sub-header r">Rows and columns can be any element. This example uses ARTICLE elements for rows and DIV elements for columns.</p>
+		</div>
+	</article>
+	
+	<hr />
+	
+	<article class="row">
+		<div class="s1 b r">
+			<h2>Fix white space with font-size 0</h2>
+		</div>
+		
+		<div class="s3 b">
+			<p>Elements displayed as inline blocks will render white-space in between them just like the words in this sentence. This, of course, can break precise layouts. The solution is to set the containing element to have a font-size of 0px. Size-zero type has size-zero white space.</p>
+			<p>This requires a font-size reset for columns within the grid…</p>
+		</div>
+	</article>
+	
+	<article class="row">
+	
+		<div class="s1 t r">
+			<h3>Reset font size for each column</h3>
+		</div>
+	
+		<div class="s1 m l">
+			<p>If the base font size is 16px…</p>
+			<pre class="s1 l"><code>html
+{
+ font-size: 16px;
+ font-size: 1em;
+ line-height: 1.5em;
+}</code></pre>
+
+		</div>
+		<div class="s2 t l"
+			<p>…and you're using relative fonts throughout…</p>
+			
+			<pre><code>h1
+{
+ font-size: 48px;
+ font-size: 3rem;
+ line-height: 1;
+}</code></pre>
+		</div>
+	</article>
+		
+	<article class="row">
+		<div class="s2 t r">
+			<p>…style your grid rows to have a zero font size…</p>
+			<pre class="s1 l"><code>.row
+{
+ font-size: 0px;
+}</code></pre>
+		</div>
+		
+		<div class="s2 t l">
+		<p>…and reset each grid column to the base font size.</p>
+			<pre><code>.s1, .s2, .s3, .s4
+{
+ display: inline-block;
+ font-size: 16px;
+ font-size: 1rem;
+ margin-left: 24px;
+}</code></pre>
+		</div>
+	</article>
+	
+	<hr />
+	
+	<h2>Vertical alignment - align each column element individually</h2>
+	
+	<article class="row">
+		<div class="s1 t">
+			<p>Vertical alignment can be a bit tricky when your columns vary in height.</p>
+			<p><code>vertical-align: top;</code></p>
+		</div>
+		
+		<div class="s1 m">
+			<p><cod>vertical-align: middle;</cod></p>
+			<p class="quiet">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+			<p class="quiet">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+		</div>
+		
+		<div class="s1 b">
+			<p><code>vertical-align: bottom;</code></p>
+			<p class="quiet">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+		</div>
+		
+		<div class="s1 m">
+			<p>This is the tallest column in the row. Other columns on this row will be vertically aligned relative to it. Align this column 'middle' to avoid weirdness with shorter columns.</p>
+			<p><code>vertical-align: middle;</code></p>
+			<p class="quiet">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+			<p class="quiet">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+		</div>
+	</article>
+	
+	<hr />
+	
+	<article class="row">
+	
+		<div class="s3 m r">
+			<h2>Inline blocks are just responsive as floats</h2>
+			<h3>but are far more flexible.</h3>
+		</div>
+		
+		<div class="s1 m l">
+			<p>Try resizing the browser window to a narrow width.<sup><a href="index.html#fn" id="fnref:1">[1]</a></sup><br/>
+			Like floats, inline blocks will wrap if the containing element isn't wide enough to hold all the elements on a single line.<br />
+			Mobile friendly designs are just as easy.
+			</p>
+		</div>
+	
+	</article>
+	
+	<article class="row r">
+		<div class="s1 l">
+			<p>Offset columns by specifying an alignment on the row:<br /><code>text-align: right;</code></p>
+		</div>
+	</article>
+	
+	<article class="row">
+		<div class="s1 p3 l">
+			<p>Or by using margins:<br /><code>margin-left: 810px;<br />/*(238 * 3) + (24 * 3)*/</code></p>
+		</div>
+	</article>
+	
+	<article class="c row">
+		<div class="s1 t l">
+			<p class="quiet">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+		</div>
+		
+		<div class="s1 t l">
+			<p>Center an arbitrary column or group of columns in a row.</p>
+		</div>
+		
+		<div class="s1 t l">
+			<p class="quiet">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+		</div>
+	</article>
+	
+	<article class="row c">
+		<div class="s2">
+			<p class="sub-header">Enjoy far more flexible formatting without floats.</p>
+		</div>
+	</article>
+	
+	<hr />
+	
+	<article class="row c">
+		<div class="s3 l">
+		<h2>Browser compatibility</h2>
+		<p>This technique works in IE8+, Chrome, Safari, and Firefox 3+. Supports IE 7 with a conditional stylesheet</p>
+		
+			<pre><code>&lt;!--[if lte IE 7]&gt;
+&lt;style media=&quot;all&quot;&gt;
+/* LOL IE 7 */
+.s1, .s2, .s3, .s4 {display: inline;}
+&lt;/style&gt;
+&lt;![endif]--&gt;</code></pre>
+		
+		<ol>
+			<li id="fn">Responsive layout requires IE9+, Chrome, Safari, or Firefox. <a href="index.html#fnref:1" title="return to article" class="reversefootnote">&nbsp;↩</a></li>
+		</ol>
+		</div>
+	</article>
+	
+	
+	<hr />
+	
+	<article class="row c">
+		<div class="s2 l">
+			<ul>
+				<li>Calculate grid sizes using this <a href="http://gridcalculator.dk/#/1024/4/24/0">Grid Calculator</a>.</li>
+				<li>Use <a href="https://github.com/necolas/normalize.css">normalize.css</a> to fix cross browser woes.</li>
+				<li>View the <a href="css/style.css">CSS directly</a>.</li>
+				<li>Brought to you by <a href="http://abouthalf.com">Abouthalf.com</a></li>
+			</ul>
+		</div>
+	</article>
+	
+</div>
+
+	
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-23543919-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script>
+</body>
+</html>

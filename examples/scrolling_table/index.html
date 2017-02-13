@@ -1,0 +1,1824 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Table Scrollage</title>
+<style type="text/css" media="screen">
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: .9em;
+		margin: 0;
+		padding: 1em;
+	}
+	
+	table.formdata, 
+	table.formdata td, 
+	table.formdata th {
+		border: 1px solid #bbbbbc;
+		border-collapse: collapse;
+	}
+	
+	table.formdata th, 
+	table.formdata td {
+		padding: .25em;
+		margin: 0px;
+	}
+	
+	table.formdata thead th,
+	table.formdata tfoot td {
+		background: #ddd;
+	}
+	
+	#scroller {
+		border: 1px sold #bbbbbc;
+		clear:both;
+	}	
+	
+	ul, ul li {
+		float: left;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	ul {margin: 0 0 1em 0;}
+	ul li {padding:.25em;}
+	
+</style>
+<script type="text/javascript" language="javascript" src="js/prototype.js"></script>
+<script type="text/javascript" language="javascript" src="js/scrolltable.js"></script>
+<script type="text/javascript" language="javascript">
+	var scroller;
+	function setScroll() {
+		scroller = new ScrollTable("scroller",300);
+	}
+	
+	window.onload = function() {
+		setScroll();
+	}
+</script>
+</head>
+
+<body>
+
+<h1>Scrolling Table</h1>
+
+<ul>
+	<li><a href="index.html#" onclick="scroller.resize(150); return false;">Small</a></li>
+	<li><a href="index.html#" onclick="scroller.resize(300); return false;">Medium</a></li>
+	<li><a href="index.html#" onclick="scroller.resize(425); return false;">Large</a></li>
+</ul>
+
+<div id="scroller">
+	<table cellspacing="0" cellpadding="0" class="formdata">
+  	<thead>
+			<tr>
+				<th colspan="3">foo</th>
+				<th align="right" width="82">1/10/05</th>
+				<th colspan="2" align="right">colspan!</th>
+				<th align="right" width="75">1001</th>
+				<th align="right" width="75">1000</th>
+				<th width="75">boo</th>
+				<th width="75">1000boo</th>
+				<th align="right" width="75">1/10/05</th>
+				<th align="right" width="75">25</th>
+				<th width="75">1000boo1000boo3690025</th>
+				<th align="right" width="75">1001</th>
+			</tr>
+			<tr>
+				<th align="right" width="75">1000</th>
+				<th width="75">boo</th>
+				<th width="75">1000boo</th>
+				<th align="right" width="82">1/10/05</th>
+				<th align="right" width="75">25</th>
+				<th width="277">1000boo1000boo3690025</th>
+				<th align="right" width="75">1001</th>
+				<th align="right" width="75">1000</th>
+				<th width="75">boo</th>
+				<th width="75">1000boo</th>
+				<th align="right" width="75">1/10/05</th>
+				<th align="right" width="75">25</th>
+				<th width="75">1000boo1000boo3690025</th>
+				<th align="right" width="75">1001</th>
+			</tr>
+		</thead>
+  	<tfoot>
+			<tr>
+				<td align="right">Fooooot</td>
+				<td>&nbsp;</td>
+				<td>1001bah</td>
+				<td align="right">&nbsp;</td>
+				<td align="right">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td align="right">&nbsp;</td>
+				<td align="right">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td align="center">&nbsp;</td>
+				<td align="right">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td align="right">&nbsp;</td>
+			</tr>
+		</tfoot>
+  	<tbody>
+			<tr>
+				<td align="right">1002</td>
+				<td>bee</td>
+				<td>Click me! 1002bee</td>
+				<td align="right">1/12/05 0:00</td>
+				<td align="right">2.515E+13</td>
+				<td>1002bee1002bee3690225150325300100</td>
+				<td align="right">1003</td>
+				<td align="right">1002</td>
+				<td>bee</td>
+				<td>1002bee</td>
+				<td align="center">########</td>
+				<td align="right">2.515E+13</td>
+				<td>1002bee1002bee3690225150325300100</td>
+				<td align="right">1003</td>
+			</tr>
+			<tr>
+				<td align="right">1003</td>
+				<td>foo</td>
+				<td>1003foo</td>
+				<td align="right">1/13/05 0:00</td>
+				<td align="right">2.5301E+19</td>
+				<td>1003foo1003foo3690325301453604828300000</td>
+				<td align="right">1004</td>
+				<td align="right">1003</td>
+				<td>foo</td>
+				<td>1003foo</td>
+				<td align="center">########</td>
+				<td align="right">2.5301E+19</td>
+				<td>1003foo1003foo3690325301453604828300000</td>
+				<td align="right">1004</td>
+			</tr>
+			<tr>
+				<td align="right">1004</td>
+				<td>fah</td>
+				<td>1004fah</td>
+				<td align="right">1/14/05 0:00</td>
+				<td align="right">2.5504E+25</td>
+				<td>1004fah1004fah369042.55042700569246E+25</td>
+				<td align="right">1005</td>
+				<td align="right">1004</td>
+				<td>fah</td>
+				<td>1004fah</td>
+				<td align="center">########</td>
+				<td align="right">2.5504E+25</td>
+				<td>1004fah1004fah369042.55042700569246E+25</td>
+				<td align="right">1005</td>
+			</tr>
+			<tr>
+				<td align="right">1005</td>
+				<td>fer</td>
+				<td>1005fer</td>
+				<td align="right">1/15/05 0:00</td>
+				<td align="right">2.576E+31</td>
+				<td>1005fer1005fer369052.57599503642453E+31</td>
+				<td align="right">1006</td>
+				<td align="right">1005</td>
+				<td>fer</td>
+				<td>1005fer</td>
+				<td align="center">########</td>
+				<td align="right">2.576E+31</td>
+				<td>1005fer1005fer369052.57599503642453E+31</td>
+				<td align="right">1006</td>
+			</tr>
+			<tr>
+				<td align="right">1006</td>
+				<td>boo</td>
+				<td>1006boo</td>
+				<td align="right">1/16/05 0:00</td>
+				<td align="right">2.607E+37</td>
+				<td>1006boo1006boo369062.60699971268293E+37</td>
+				<td align="right">1007</td>
+				<td align="right">1006</td>
+				<td>boo</td>
+				<td>1006boo</td>
+				<td align="center">########</td>
+				<td align="right">2.607E+37</td>
+				<td>1006boo1006boo369062.60699971268293E+37</td>
+				<td align="right">1007</td>
+			</tr>
+			<tr>
+				<td align="right">1007</td>
+				<td>bah</td>
+				<td>1007bah</td>
+				<td align="right">1/17/05 0:00</td>
+				<td align="right">2.6436E+43</td>
+				<td>1007bah1007bah369072.64362545164641E+43</td>
+				<td align="right">1008</td>
+				<td align="right">1007</td>
+				<td>bah</td>
+				<td>1007bah</td>
+				<td align="center">########</td>
+				<td align="right">2.6436E+43</td>
+				<td>1007bah1007bah369072.64362545164641E+43</td>
+				<td align="right">1008</td>
+			</tr>
+			<tr>
+				<td align="right">1008</td>
+				<td>bee</td>
+				<td>1008bee</td>
+				<td align="right">1/18/05 0:00</td>
+				<td align="right">2.6861E+49</td>
+				<td>1008bee1008bee369082.68609265090166E+49</td>
+				<td align="right">1009</td>
+				<td align="right">1008</td>
+				<td>bee</td>
+				<td>1008bee</td>
+				<td align="center">########</td>
+				<td align="right">2.6861E+49</td>
+				<td>1008bee1008bee369082.68609265090166E+49</td>
+				<td align="right">1009</td>
+			</tr>
+			<tr>
+				<td align="right">1009</td>
+				<td>foo</td>
+				<td>1009foo</td>
+				<td align="right">1/19/05 0:00</td>
+				<td align="right">2.7347E+55</td>
+				<td>1009foo1009foo369092.73465989212262E+55</td>
+				<td align="right">1010</td>
+				<td align="right">1009</td>
+				<td>foo</td>
+				<td>1009foo</td>
+				<td align="center">########</td>
+				<td align="right">2.7347E+55</td>
+				<td>1009foo1009foo369092.73465989212262E+55</td>
+				<td align="right">1010</td>
+			</tr>
+			<tr>
+				<td align="right">1010</td>
+				<td>fah</td>
+				<td>1010fah</td>
+				<td align="right">1/20/05 0:00</td>
+				<td align="right">2.7896E+61</td>
+				<td>1010fah1010fah369102.78962655595428E+61</td>
+				<td align="right">1011</td>
+				<td align="right">1010</td>
+				<td>fah</td>
+				<td>1010fah</td>
+				<td align="center">########</td>
+				<td align="right">2.7896E+61</td>
+				<td>1010fah1010fah369102.78962655595428E+61</td>
+				<td align="right">1011</td>
+			</tr>
+			<tr>
+				<td align="right">1011</td>
+				<td>fer</td>
+				<td>1011fer</td>
+				<td align="right">1/21/05 0:00</td>
+				<td align="right">2.8513E+67</td>
+				<td>1011fer1011fer369112.85133588499854E+67</td>
+				<td align="right">1012</td>
+				<td align="right">1011</td>
+				<td>fer</td>
+				<td>1011fer</td>
+				<td align="center">########</td>
+				<td align="right">2.8513E+67</td>
+				<td>1011fer1011fer369112.85133588499854E+67</td>
+				<td align="right">1012</td>
+			</tr>
+			<tr>
+				<td align="right">1012</td>
+				<td>boo</td>
+				<td>1012boo</td>
+				<td align="right">1/22/05 0:00</td>
+				<td align="right">2.9202E+73</td>
+				<td>1012boo1012boo369122.92017853860595E+73</td>
+				<td align="right">1013</td>
+				<td align="right">1012</td>
+				<td>boo</td>
+				<td>1012boo</td>
+				<td align="center">########</td>
+				<td align="right">2.9202E+73</td>
+				<td>1012boo1012boo369122.92017853860595E+73</td>
+				<td align="right">1013</td>
+			</tr>
+			<tr>
+				<td align="right">1013</td>
+				<td>bah</td>
+				<td>1013bah</td>
+				<td align="right">1/23/05 0:00</td>
+				<td align="right">2.9966E+79</td>
+				<td>1013bah1013bah369132.99659669078273E+79</td>
+				<td align="right">1014</td>
+				<td align="right">1013</td>
+				<td>bah</td>
+				<td>1013bah</td>
+				<td align="center">########</td>
+				<td align="right">2.9966E+79</td>
+				<td>1013bah1013bah369132.99659669078273E+79</td>
+				<td align="right">1014</td>
+			</tr>
+			<tr>
+				<td align="right">1014</td>
+				<td>bee</td>
+				<td>1014bee</td>
+				<td align="right">1/24/05 0:00</td>
+				<td align="right">3.0811E+85</td>
+				<td>1014bee1014bee369143.08108873107604E+85</td>
+				<td align="right">1015</td>
+				<td align="right">1014</td>
+				<td>bee</td>
+				<td>1014bee</td>
+				<td align="center">########</td>
+				<td align="right">3.0811E+85</td>
+				<td>1014bee1014bee369143.08108873107604E+85</td>
+				<td align="right">1015</td>
+			</tr>
+			<tr>
+				<td align="right">1015</td>
+				<td>foo</td>
+				<td>1015foo</td>
+				<td align="right">1/25/05 0:00</td>
+				<td align="right">3.1742E+91</td>
+				<td>1015foo1015foo369153.17421463797281E+91</td>
+				<td align="right">1016</td>
+				<td align="right">1015</td>
+				<td>foo</td>
+				<td>1015foo</td>
+				<td align="center">########</td>
+				<td align="right">3.1742E+91</td>
+				<td>1015foo1015foo369153.17421463797281E+91</td>
+				<td align="right">1016</td>
+			</tr>
+			<tr>
+				<td align="right">1016</td>
+				<td>fah</td>
+				<td>1016fah</td>
+				<td align="right">1/26/05 0:00</td>
+				<td align="right">3.2766E+97</td>
+				<td>1016fah1016fah369163.27660210533526E+97</td>
+				<td align="right">1017</td>
+				<td align="right">1016</td>
+				<td>fah</td>
+				<td>1016fah</td>
+				<td align="center">########</td>
+				<td align="right">3.2766E+97</td>
+				<td>1016fah1016fah369163.27660210533526E+97</td>
+				<td align="right">1017</td>
+			</tr>
+			<tr>
+				<td align="right">1017</td>
+				<td>fer</td>
+				<td>1017fer</td>
+				<td align="right">1/27/05 0:00</td>
+				<td align="right">3.389E+103</td>
+				<td>1017fer1017fer369173.3889535149251E+103</td>
+				<td align="right">1018</td>
+				<td align="right">1017</td>
+				<td>fer</td>
+				<td>1017fer</td>
+				<td align="center">########</td>
+				<td align="right">3.389E+103</td>
+				<td>1017fer1017fer369173.3889535149251E+103</td>
+				<td align="right">1018</td>
+			</tr>
+			<tr>
+				<td align="right">1018</td>
+				<td>boo</td>
+				<td>1018boo</td>
+				<td align="right">1/28/05 0:00</td>
+				<td align="right">3.512E+109</td>
+				<td>1018boo1018boo369183.5120538624012E+109</td>
+				<td align="right">1019</td>
+				<td align="right">1018</td>
+				<td>boo</td>
+				<td>1018boo</td>
+				<td align="center">########</td>
+				<td align="right">3.512E+109</td>
+				<td>1018boo1018boo369183.5120538624012E+109</td>
+				<td align="right">1019</td>
+			</tr>
+			<tr>
+				<td align="right">1019</td>
+				<td>bah</td>
+				<td>1019bah</td>
+				<td align="right">1/29/05 0:00</td>
+				<td align="right">3.647E+115</td>
+				<td>1019bah1019bah369193.6467797606168E+115</td>
+				<td align="right">1020</td>
+				<td align="right">1019</td>
+				<td>bah</td>
+				<td>1019bah</td>
+				<td align="center">########</td>
+				<td align="right">3.647E+115</td>
+				<td>1019bah1019bah369193.6467797606168E+115</td>
+				<td align="right">1020</td>
+			</tr>
+			<tr>
+				<td align="right">1020</td>
+				<td>bee</td>
+				<td>1020bee</td>
+				<td align="right">1/30/05 0:00</td>
+				<td align="right">3.794E+121</td>
+				<td>1020bee1020bee369203.7941096629457E+121</td>
+				<td align="right">1021</td>
+				<td align="right">1020</td>
+				<td>bee</td>
+				<td>1020bee</td>
+				<td align="center">########</td>
+				<td align="right">3.794E+121</td>
+				<td>1020bee1020bee369203.7941096629457E+121</td>
+				<td align="right">1021</td>
+			</tr>
+			<tr>
+				<td align="right">1021</td>
+				<td>foo</td>
+				<td>1021foo</td>
+				<td align="right">1/31/05 0:00</td>
+				<td align="right">3.955E+127</td>
+				<td>1021foo1021foo369213.9551354711508E+127</td>
+				<td align="right">1022</td>
+				<td align="right">1021</td>
+				<td>foo</td>
+				<td>1021foo</td>
+				<td align="center">########</td>
+				<td align="right">3.955E+127</td>
+				<td>1021foo1021foo369213.9551354711508E+127</td>
+				<td align="right">1022</td>
+			</tr>
+			<tr>
+				<td align="right">1022</td>
+				<td>fah</td>
+				<td>1022fah</td>
+				<td align="right">2/1/05 0:00</td>
+				<td align="right">4.131E+133</td>
+				<td>1022fah1022fah369224.1310757174495E+133</td>
+				<td align="right">1023</td>
+				<td align="right">1022</td>
+				<td>fah</td>
+				<td>1022fah</td>
+				<td align="right">2/1/05 0:00</td>
+				<td align="right">4.131E+133</td>
+				<td>1022fah1022fah369224.1310757174495E+133</td>
+				<td align="right">1023</td>
+			</tr>
+			<tr>
+				<td align="right">1023</td>
+				<td>fer</td>
+				<td>1023fer</td>
+				<td align="right">2/2/05 0:00</td>
+				<td align="right">4.323E+139</td>
+				<td>1023fer1023fer369234.3232905395067E+139</td>
+				<td align="right">1024</td>
+				<td align="right">1023</td>
+				<td>fer</td>
+				<td>1023fer</td>
+				<td align="right">2/2/05 0:00</td>
+				<td align="right">4.323E+139</td>
+				<td>1023fer1023fer369234.3232905395067E+139</td>
+				<td align="right">1024</td>
+			</tr>
+			<tr>
+				<td align="right">1024</td>
+				<td>boo</td>
+				<td>1024boo</td>
+				<td align="right">2/3/05 0:00</td>
+				<td align="right">4.533E+145</td>
+				<td>1024boo1024boo369244.5332987007538E+145</td>
+				<td align="right">1025</td>
+				<td align="right">1024</td>
+				<td>boo</td>
+				<td>1024boo</td>
+				<td align="right">2/3/05 0:00</td>
+				<td align="right">4.533E+145</td>
+				<td>1024boo1024boo369244.5332987007538E+145</td>
+				<td align="right">1025</td>
+			</tr>
+			<tr>
+				<td align="right">1025</td>
+				<td>bah</td>
+				<td>1025bah</td>
+				<td align="right">2/4/05 0:00</td>
+				<td align="right">4.763E+151</td>
+				<td>1025bah1025bah369254.7627969474794E+151</td>
+				<td align="right">1026</td>
+				<td align="right">1025</td>
+				<td>bah</td>
+				<td>1025bah</td>
+				<td align="right">2/4/05 0:00</td>
+				<td align="right">4.763E+151</td>
+				<td>1025bah1025bah369254.7627969474794E+151</td>
+				<td align="right">1026</td>
+			</tr>
+			<tr>
+				<td align="right">1026</td>
+				<td>bee</td>
+				<td>1026bee</td>
+				<td align="right">2/5/05 0:00</td>
+				<td align="right">5.014E+157</td>
+				<td>1026bee1026bee369265.0136820394849E+157</td>
+				<td align="right">1027</td>
+				<td align="right">1026</td>
+				<td>bee</td>
+				<td>1026bee</td>
+				<td align="right">2/5/05 0:00</td>
+				<td align="right">5.014E+157</td>
+				<td>1026bee1026bee369265.0136820394849E+157</td>
+				<td align="right">1027</td>
+			</tr>
+			<tr>
+				<td align="right">1027</td>
+				<td>foo</td>
+				<td>1027foo</td>
+				<td align="right">2/6/05 0:00</td>
+				<td align="right">5.288E+163</td>
+				<td>1027foo1027foo369275.2880758438238E+163</td>
+				<td align="right">1028</td>
+				<td align="right">1027</td>
+				<td>foo</td>
+				<td>1027foo</td>
+				<td align="right">2/6/05 0:00</td>
+				<td align="right">5.288E+163</td>
+				<td>1027foo1027foo369275.2880758438238E+163</td>
+				<td align="right">1028</td>
+			</tr>
+			<tr>
+				<td align="right">1028</td>
+				<td>fah</td>
+				<td>1028fah</td>
+				<td align="right">2/7/05 0:00</td>
+				<td align="right">5.588E+169</td>
+				<td>1028fah1028fah369285.5883539425395E+169</td>
+				<td align="right">1029</td>
+				<td align="right">1028</td>
+				<td>fah</td>
+				<td>1028fah</td>
+				<td align="right">2/7/05 0:00</td>
+				<td align="right">5.588E+169</td>
+				<td>1028fah1028fah369285.5883539425395E+169</td>
+				<td align="right">1029</td>
+			</tr>
+			<tr>
+				<td align="right">1029</td>
+				<td>fer</td>
+				<td>1029fer</td>
+				<td align="right">2/8/05 0:00</td>
+				<td align="right">5.917E+175</td>
+				<td>1029fer1029fer369295.9171782768725E+175</td>
+				<td align="right">1030</td>
+				<td align="right">1029</td>
+				<td>fer</td>
+				<td>1029fer</td>
+				<td align="right">2/8/05 0:00</td>
+				<td align="right">5.917E+175</td>
+				<td>1029fer1029fer369295.9171782768725E+175</td>
+				<td align="right">1030</td>
+			</tr>
+			<tr>
+				<td align="right">1030</td>
+				<td>boo</td>
+				<td>1030boo</td>
+				<td align="right">2/9/05 0:00</td>
+				<td align="right">6.278E+181</td>
+				<td>1030boo1030boo369306.277534433934E+181</td>
+				<td align="right">1031</td>
+				<td align="right">1030</td>
+				<td>boo</td>
+				<td>1030boo</td>
+				<td align="right">2/9/05 0:00</td>
+				<td align="right">6.278E+181</td>
+				<td>1030boo1030boo369306.277534433934E+181</td>
+				<td align="right">1031</td>
+			</tr>
+			<tr>
+				<td align="right">1031</td>
+				<td>bah</td>
+				<td>1031bah</td>
+				<td align="right">2/10/05 0:00</td>
+				<td align="right">6.673E+187</td>
+				<td>1031bah1031bah369316.6727742794289E+187</td>
+				<td align="right">1032</td>
+				<td align="right">1031</td>
+				<td>bah</td>
+				<td>1031bah</td>
+				<td align="center">########</td>
+				<td align="right">6.673E+187</td>
+				<td>1031bah1031bah369316.6727742794289E+187</td>
+				<td align="right">1032</td>
+			</tr>
+			<tr>
+				<td align="right">1032</td>
+				<td>bee</td>
+				<td>1032bee</td>
+				<td align="right">2/11/05 0:00</td>
+				<td align="right">7.107E+193</td>
+				<td>1032bee1032bee369327.1066647541745E+193</td>
+				<td align="right">1033</td>
+				<td align="right">1032</td>
+				<td>bee</td>
+				<td>1032bee</td>
+				<td align="center">########</td>
+				<td align="right">7.107E+193</td>
+				<td>1032bee1032bee369327.1066647541745E+193</td>
+				<td align="right">1033</td>
+			</tr>
+			<tr>
+				<td align="right">1033</td>
+				<td>foo</td>
+				<td>1033foo</td>
+				<td align="right">2/12/05 0:00</td>
+				<td align="right">7.583E+199</td>
+				<td>1033foo1033foo369337.5834437858673E+199</td>
+				<td align="right">1034</td>
+				<td align="right">1033</td>
+				<td>foo</td>
+				<td>1033foo</td>
+				<td align="center">########</td>
+				<td align="right">7.583E+199</td>
+				<td>1033foo1033foo369337.5834437858673E+199</td>
+				<td align="right">1034</td>
+			</tr>
+			<tr>
+				<td align="right">1034</td>
+				<td>fah</td>
+				<td>1034fah</td>
+				<td align="right">2/13/05 0:00</td>
+				<td align="right">8.108E+205</td>
+				<td>1034fah1034fah369348.1078844243228E+205</td>
+				<td align="right">1035</td>
+				<td align="right">1034</td>
+				<td>fah</td>
+				<td>1034fah</td>
+				<td align="center">########</td>
+				<td align="right">8.108E+205</td>
+				<td>1034fah1034fah369348.1078844243228E+205</td>
+				<td align="right">1035</td>
+			</tr>
+			<tr>
+				<td align="right">1035</td>
+				<td>fer</td>
+				<td>1035fer</td>
+				<td align="right">2/14/05 0:00</td>
+				<td align="right">8.685E+211</td>
+				<td>1035fer1035fer369358.6853684924452E+211</td>
+				<td align="right">1036</td>
+				<td align="right">1035</td>
+				<td>fer</td>
+				<td>1035fer</td>
+				<td align="center">########</td>
+				<td align="right">8.685E+211</td>
+				<td>1035fer1035fer369358.6853684924452E+211</td>
+				<td align="right">1036</td>
+			</tr>
+			<tr>
+				<td align="right">1036</td>
+				<td>boo</td>
+				<td>1036boo</td>
+				<td align="right">2/15/05 0:00</td>
+				<td align="right">9.322E+217</td>
+				<td>1036boo1036boo369369.3219712614674E+217</td>
+				<td align="right">1037</td>
+				<td align="right">1036</td>
+				<td>boo</td>
+				<td>1036boo</td>
+				<td align="center">########</td>
+				<td align="right">9.322E+217</td>
+				<td>1036boo1036boo369369.3219712614674E+217</td>
+				<td align="right">1037</td>
+			</tr>
+			<tr>
+				<td align="right">1037</td>
+				<td>bah</td>
+				<td>1037bah</td>
+				<td align="right">2/16/05 0:00</td>
+				<td align="right">1.002E+224</td>
+				<td>1037bah1037bah369371.0024558913473E+224</td>
+				<td align="right">1038</td>
+				<td align="right">1037</td>
+				<td>bah</td>
+				<td>1037bah</td>
+				<td align="center">########</td>
+				<td align="right">1.002E+224</td>
+				<td>1037bah1037bah369371.0024558913473E+224</td>
+				<td align="right">1038</td>
+			</tr>
+			<tr>
+				<td align="right">1038</td>
+				<td>bee</td>
+				<td>1038bee</td>
+				<td align="right">2/17/05 0:00</td>
+				<td align="right">1.08E+230</td>
+				<td>1038bee1038bee369381.0800900853968E+230</td>
+				<td align="right">1039</td>
+				<td align="right">1038</td>
+				<td>bee</td>
+				<td>1038bee</td>
+				<td align="center">########</td>
+				<td align="right">1.08E+230</td>
+				<td>1038bee1038bee369381.0800900853968E+230</td>
+				<td align="right">1039</td>
+			</tr>
+			<tr>
+				<td align="right">1039</td>
+				<td>foo</td>
+				<td>1039foo</td>
+				<td align="right">2/18/05 0:00</td>
+				<td align="right">1.166E+236</td>
+				<td>1039foo1039foo369391.1659799290776E+236</td>
+				<td align="right">1040</td>
+				<td align="right">1039</td>
+				<td>foo</td>
+				<td>1039foo</td>
+				<td align="center">########</td>
+				<td align="right">1.166E+236</td>
+				<td>1039foo1039foo369391.1659799290776E+236</td>
+				<td align="right">1040</td>
+			</tr>
+			<tr>
+				<td align="right">1040</td>
+				<td>fah</td>
+				<td>1040fah</td>
+				<td align="right">2/19/05 0:00</td>
+				<td align="right">1.261E+242</td>
+				<td>1040fah1040fah369401.2611238912904E+242</td>
+				<td align="right">1041</td>
+				<td align="right">1040</td>
+				<td>fah</td>
+				<td>1040fah</td>
+				<td align="center">########</td>
+				<td align="right">1.261E+242</td>
+				<td>1040fah1040fah369401.2611238912904E+242</td>
+				<td align="right">1041</td>
+			</tr>
+			<tr>
+				<td align="right">1041</td>
+				<td>fer</td>
+				<td>1041fer</td>
+				<td align="right">2/20/05 0:00</td>
+				<td align="right">1.367E+248</td>
+				<td>1041fer1041fer369411.3666559996374E+248</td>
+				<td align="right">1042</td>
+				<td align="right">1041</td>
+				<td>fer</td>
+				<td>1041fer</td>
+				<td align="center">########</td>
+				<td align="right">1.367E+248</td>
+				<td>1041fer1041fer369411.3666559996374E+248</td>
+				<td align="right">1042</td>
+			</tr>
+			<tr>
+				<td align="right">1042</td>
+				<td>boo</td>
+				<td>1042boo</td>
+				<td align="right">2/21/05 0:00</td>
+				<td align="right">1.484E+254</td>
+				<td>1042boo1042boo369421.4838658847904E+254</td>
+				<td align="right">1043</td>
+				<td align="right">1042</td>
+				<td>boo</td>
+				<td>1042boo</td>
+				<td align="center">########</td>
+				<td align="right">1.484E+254</td>
+				<td>1042boo1042boo369421.4838658847904E+254</td>
+				<td align="right">1043</td>
+			</tr>
+			<tr>
+				<td align="right">1043</td>
+				<td>bah</td>
+				<td>1043bah</td>
+				<td align="right">2/22/05 0:00</td>
+				<td align="right">1.614E+260</td>
+				<td>1043bah1043bah369431.6142220189033E+260</td>
+				<td align="right">1044</td>
+				<td align="right">1043</td>
+				<td>bah</td>
+				<td>1043bah</td>
+				<td align="center">########</td>
+				<td align="right">1.614E+260</td>
+				<td>1043bah1043bah369431.6142220189033E+260</td>
+				<td align="right">1044</td>
+			</tr>
+			<tr>
+				<td align="right">1044</td>
+				<td>bee</td>
+				<td>1044bee</td>
+				<td align="right">2/23/05 0:00</td>
+				<td align="right">1.759E+266</td>
+				<td>1044bee1044bee369441.7593986903954E+266</td>
+				<td align="right">1045</td>
+				<td align="right">1044</td>
+				<td>bee</td>
+				<td>1044bee</td>
+				<td align="center">########</td>
+				<td align="right">1.759E+266</td>
+				<td>1044bee1044bee369441.7593986903954E+266</td>
+				<td align="right">1045</td>
+			</tr>
+			<tr>
+				<td align="right">1045</td>
+				<td>foo</td>
+				<td>1045foo</td>
+				<td align="right">2/24/05 0:00</td>
+				<td align="right">1.921E+272</td>
+				<td>1045foo1045foo369451.921307354879E+272</td>
+				<td align="right">1046</td>
+				<td align="right">1045</td>
+				<td>foo</td>
+				<td>1045foo</td>
+				<td align="center">########</td>
+				<td align="right">1.921E+272</td>
+				<td>1045foo1045foo369451.921307354879E+272</td>
+				<td align="right">1046</td>
+			</tr>
+			<tr>
+				<td align="right">1046</td>
+				<td>fah</td>
+				<td>1046fah</td>
+				<td align="right">2/25/05 0:00</td>
+				<td align="right">2.102E+278</td>
+				<td>1046fah1046fah369462.1021331178908E+278</td>
+				<td align="right">1047</td>
+				<td align="right">1046</td>
+				<td>fah</td>
+				<td>1046fah</td>
+				<td align="center">########</td>
+				<td align="right">2.102E+278</td>
+				<td>1046fah1046fah369462.1021331178908E+278</td>
+				<td align="right">1047</td>
+			</tr>
+			<tr>
+				<td align="right">1047</td>
+				<td>fer</td>
+				<td>1047fer</td>
+				<td align="right">2/26/05 0:00</td>
+				<td align="right">2.304E+284</td>
+				<td>1047fer1047fer369472.30437724303E+284</td>
+				<td align="right">1048</td>
+				<td align="right">1047</td>
+				<td>fer</td>
+				<td>1047fer</td>
+				<td align="center">########</td>
+				<td align="right">2.304E+284</td>
+				<td>1047fer1047fer369472.30437724303E+284</td>
+				<td align="right">1048</td>
+			</tr>
+			<tr>
+				<td align="right">1048</td>
+				<td>boo</td>
+				<td>1048boo</td>
+				<td align="right">2/27/05 0:00</td>
+				<td align="right">2.531E+290</td>
+				<td>1048boo1048boo369482.5309067435288E+290</td>
+				<td align="right">1049</td>
+				<td align="right">1048</td>
+				<td>boo</td>
+				<td>1048boo</td>
+				<td align="center">########</td>
+				<td align="right">2.531E+290</td>
+				<td>1048boo1048boo369482.5309067435288E+290</td>
+				<td align="right">1049</td>
+			</tr>
+			<tr>
+				<td align="right">1049</td>
+				<td>bah</td>
+				<td>1049bah</td>
+				<td align="right">2/28/05 0:00</td>
+				<td align="right">2.785E+296</td>
+				<td>1049bah1049bah369492.7850123114858E+296</td>
+				<td align="right">1050</td>
+				<td align="right">1049</td>
+				<td>bah</td>
+				<td>1049bah</td>
+				<td align="center">########</td>
+				<td align="right">2.785E+296</td>
+				<td>1049bah1049bah369492.7850123114858E+296</td>
+				<td align="right">1050</td>
+			</tr>
+			<tr>
+				<td align="right">1050</td>
+				<td>bee</td>
+				<td>1050bee</td>
+				<td align="right">3/1/05 0:00</td>
+				<td align="right">3.07E+302</td>
+				<td>1050bee1050bee369503.0704760734131E+302</td>
+				<td align="right">1051</td>
+				<td align="right">1050</td>
+				<td>bee</td>
+				<td>1050bee</td>
+				<td align="right">3/1/05 0:00</td>
+				<td align="right">3.07E+302</td>
+				<td>1050bee1050bee369503.0704760734131E+302</td>
+				<td align="right">1051</td>
+			</tr>
+			<tr>
+				<td align="right">1051</td>
+				<td>foo</td>
+				<td>1051foo</td>
+				<td align="right">3/2/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1052</td>
+				<td align="right">1051</td>
+				<td>foo</td>
+				<td>1051foo</td>
+				<td align="right">3/2/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1052</td>
+			</tr>
+			<tr>
+				<td align="right">1052</td>
+				<td>fah</td>
+				<td>1052fah</td>
+				<td align="right">3/3/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1053</td>
+				<td align="right">1052</td>
+				<td>fah</td>
+				<td>1052fah</td>
+				<td align="right">3/3/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1053</td>
+			</tr>
+			<tr>
+				<td align="right">1053</td>
+				<td>fer</td>
+				<td>1053fer</td>
+				<td align="right">3/4/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1054</td>
+				<td align="right">1053</td>
+				<td>fer</td>
+				<td>1053fer</td>
+				<td align="right">3/4/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1054</td>
+			</tr>
+			<tr>
+				<td align="right">1054</td>
+				<td>boo</td>
+				<td>1054boo</td>
+				<td align="right">3/5/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1055</td>
+				<td align="right">1054</td>
+				<td>boo</td>
+				<td>1054boo</td>
+				<td align="right">3/5/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1055</td>
+			</tr>
+			<tr>
+				<td align="right">1055</td>
+				<td>bah</td>
+				<td>1055bah</td>
+				<td align="right">3/6/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1056</td>
+				<td align="right">1055</td>
+				<td>bah</td>
+				<td>1055bah</td>
+				<td align="right">3/6/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1056</td>
+			</tr>
+			<tr>
+				<td align="right">1056</td>
+				<td>bee</td>
+				<td>1056bee</td>
+				<td align="right">3/7/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1057</td>
+				<td align="right">1056</td>
+				<td>bee</td>
+				<td>1056bee</td>
+				<td align="right">3/7/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1057</td>
+			</tr>
+			<tr>
+				<td align="right">1057</td>
+				<td>foo</td>
+				<td>1057foo</td>
+				<td align="right">3/8/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1058</td>
+				<td align="right">1057</td>
+				<td>foo</td>
+				<td>1057foo</td>
+				<td align="right">3/8/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1058</td>
+			</tr>
+			<tr>
+				<td align="right">1058</td>
+				<td>fah</td>
+				<td>1058fah</td>
+				<td align="right">3/9/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1059</td>
+				<td align="right">1058</td>
+				<td>fah</td>
+				<td>1058fah</td>
+				<td align="right">3/9/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1059</td>
+			</tr>
+			<tr>
+				<td align="right">1059</td>
+				<td>fer</td>
+				<td>1059fer</td>
+				<td align="right">3/10/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1060</td>
+				<td align="right">1059</td>
+				<td>fer</td>
+				<td>1059fer</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1060</td>
+			</tr>
+			<tr>
+				<td align="right">1060</td>
+				<td>boo</td>
+				<td>1060boo</td>
+				<td align="right">3/11/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1061</td>
+				<td align="right">1060</td>
+				<td>boo</td>
+				<td>1060boo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1061</td>
+			</tr>
+			<tr>
+				<td align="right">1061</td>
+				<td>bah</td>
+				<td>1061bah</td>
+				<td align="right">3/12/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1062</td>
+				<td align="right">1061</td>
+				<td>bah</td>
+				<td>1061bah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1062</td>
+			</tr>
+			<tr>
+				<td align="right">1062</td>
+				<td>bee</td>
+				<td>1062bee</td>
+				<td align="right">3/13/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1063</td>
+				<td align="right">1062</td>
+				<td>bee</td>
+				<td>1062bee</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1063</td>
+			</tr>
+			<tr>
+				<td align="right">1063</td>
+				<td>foo</td>
+				<td>1063foo</td>
+				<td align="right">3/14/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1064</td>
+				<td align="right">1063</td>
+				<td>foo</td>
+				<td>1063foo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1064</td>
+			</tr>
+			<tr>
+				<td align="right">1064</td>
+				<td>fah</td>
+				<td>1064fah</td>
+				<td align="right">3/15/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1065</td>
+				<td align="right">1064</td>
+				<td>fah</td>
+				<td>1064fah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1065</td>
+			</tr>
+			<tr>
+				<td align="right">1065</td>
+				<td>fer</td>
+				<td>1065fer</td>
+				<td align="right">3/16/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1066</td>
+				<td align="right">1065</td>
+				<td>fer</td>
+				<td>1065fer</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1066</td>
+			</tr>
+			<tr>
+				<td align="right">1066</td>
+				<td>boo</td>
+				<td>1066boo</td>
+				<td align="right">3/17/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1067</td>
+				<td align="right">1066</td>
+				<td>boo</td>
+				<td>1066boo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1067</td>
+			</tr>
+			<tr>
+				<td align="right">1067</td>
+				<td>bah</td>
+				<td>1067bah</td>
+				<td align="right">3/18/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1068</td>
+				<td align="right">1067</td>
+				<td>bah</td>
+				<td>1067bah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1068</td>
+			</tr>
+			<tr>
+				<td align="right">1068</td>
+				<td>bee</td>
+				<td>1068bee</td>
+				<td align="right">3/19/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1069</td>
+				<td align="right">1068</td>
+				<td>bee</td>
+				<td>1068bee</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1069</td>
+			</tr>
+			<tr>
+				<td align="right">1069</td>
+				<td>foo</td>
+				<td>1069foo</td>
+				<td align="right">3/20/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1070</td>
+				<td align="right">1069</td>
+				<td>foo</td>
+				<td>1069foo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1070</td>
+			</tr>
+			<tr>
+				<td align="right">1070</td>
+				<td>fah</td>
+				<td>1070fah</td>
+				<td align="right">3/21/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1071</td>
+				<td align="right">1070</td>
+				<td>fah</td>
+				<td>1070fah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1071</td>
+			</tr>
+			<tr>
+				<td align="right">1071</td>
+				<td>fer</td>
+				<td>1071fer</td>
+				<td align="right">3/22/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1072</td>
+				<td align="right">1071</td>
+				<td>fer</td>
+				<td>1071fer</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1072</td>
+			</tr>
+			<tr>
+				<td align="right">1072</td>
+				<td>boo</td>
+				<td>1072boo</td>
+				<td align="right">3/23/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1073</td>
+				<td align="right">1072</td>
+				<td>boo</td>
+				<td>1072boo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1073</td>
+			</tr>
+			<tr>
+				<td align="right">1073</td>
+				<td>bah</td>
+				<td>1073bah</td>
+				<td align="right">3/24/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1074</td>
+				<td align="right">1073</td>
+				<td>bah</td>
+				<td>1073bah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1074</td>
+			</tr>
+			<tr>
+				<td align="right">1074</td>
+				<td>bee</td>
+				<td>1074bee</td>
+				<td align="right">3/25/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1075</td>
+				<td align="right">1074</td>
+				<td>bee</td>
+				<td>1074bee</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1075</td>
+			</tr>
+			<tr>
+				<td align="right">1075</td>
+				<td>foo</td>
+				<td>1075foo</td>
+				<td align="right">3/26/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1076</td>
+				<td align="right">1075</td>
+				<td>foo</td>
+				<td>1075foo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1076</td>
+			</tr>
+			<tr>
+				<td align="right">1076</td>
+				<td>fah</td>
+				<td>1076fah</td>
+				<td align="right">3/27/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1077</td>
+				<td align="right">1076</td>
+				<td>fah</td>
+				<td>1076fah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1077</td>
+			</tr>
+			<tr>
+				<td align="right">1077</td>
+				<td>fer</td>
+				<td>1077fer</td>
+				<td align="right">3/28/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1078</td>
+				<td align="right">1077</td>
+				<td>fer</td>
+				<td>1077fer</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1078</td>
+			</tr>
+			<tr>
+				<td align="right">1078</td>
+				<td>boo</td>
+				<td>1078boo</td>
+				<td align="right">3/29/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1079</td>
+				<td align="right">1078</td>
+				<td>boo</td>
+				<td>1078boo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1079</td>
+			</tr>
+			<tr>
+				<td align="right">1079</td>
+				<td>bah</td>
+				<td>1079bah</td>
+				<td align="right">3/30/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1080</td>
+				<td align="right">1079</td>
+				<td>bah</td>
+				<td>1079bah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1080</td>
+			</tr>
+			<tr>
+				<td align="right">1080</td>
+				<td>bee</td>
+				<td>1080bee</td>
+				<td align="right">3/31/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1081</td>
+				<td align="right">1080</td>
+				<td>bee</td>
+				<td>1080bee</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1081</td>
+			</tr>
+			<tr>
+				<td align="right">1081</td>
+				<td>foo</td>
+				<td>1081foo</td>
+				<td align="right">4/1/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1082</td>
+				<td align="right">1081</td>
+				<td>foo</td>
+				<td>1081foo</td>
+				<td align="right">4/1/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1082</td>
+			</tr>
+			<tr>
+				<td align="right">1082</td>
+				<td>fah</td>
+				<td>1082fah</td>
+				<td align="right">4/2/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1083</td>
+				<td align="right">1082</td>
+				<td>fah</td>
+				<td>1082fah</td>
+				<td align="right">4/2/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1083</td>
+			</tr>
+			<tr>
+				<td align="right">1083</td>
+				<td>fer</td>
+				<td>1083fer</td>
+				<td align="right">4/3/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1084</td>
+				<td align="right">1083</td>
+				<td>fer</td>
+				<td>1083fer</td>
+				<td align="right">4/3/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1084</td>
+			</tr>
+			<tr>
+				<td align="right">1084</td>
+				<td>boo</td>
+				<td>1084boo</td>
+				<td align="right">4/4/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1085</td>
+				<td align="right">1084</td>
+				<td>boo</td>
+				<td>1084boo</td>
+				<td align="right">4/4/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1085</td>
+			</tr>
+			<tr>
+				<td align="right">1085</td>
+				<td>bah</td>
+				<td>1085bah</td>
+				<td align="right">4/5/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1086</td>
+				<td align="right">1085</td>
+				<td>bah</td>
+				<td>1085bah</td>
+				<td align="right">4/5/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1086</td>
+			</tr>
+			<tr>
+				<td align="right">1086</td>
+				<td>bee</td>
+				<td>1086bee</td>
+				<td align="right">4/6/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1087</td>
+				<td align="right">1086</td>
+				<td>bee</td>
+				<td>1086bee</td>
+				<td align="right">4/6/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1087</td>
+			</tr>
+			<tr>
+				<td align="right">1087</td>
+				<td>foo</td>
+				<td>1087foo</td>
+				<td align="right">4/7/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1088</td>
+				<td align="right">1087</td>
+				<td>foo</td>
+				<td>1087foo</td>
+				<td align="right">4/7/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1088</td>
+			</tr>
+			<tr>
+				<td align="right">1088</td>
+				<td>fah</td>
+				<td>1088fah</td>
+				<td align="right">4/8/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1089</td>
+				<td align="right">1088</td>
+				<td>fah</td>
+				<td>1088fah</td>
+				<td align="right">4/8/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1089</td>
+			</tr>
+			<tr>
+				<td align="right">1089</td>
+				<td>fer</td>
+				<td>1089fer</td>
+				<td align="right">4/9/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1090</td>
+				<td align="right">1089</td>
+				<td>fer</td>
+				<td>1089fer</td>
+				<td align="right">4/9/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1090</td>
+			</tr>
+			<tr>
+				<td align="right">1090</td>
+				<td>boo</td>
+				<td>1090boo</td>
+				<td align="right">4/10/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1091</td>
+				<td align="right">1090</td>
+				<td>boo</td>
+				<td>1090boo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1091</td>
+			</tr>
+			<tr>
+				<td align="right">1091</td>
+				<td>bah</td>
+				<td>1091bah</td>
+				<td align="right">4/11/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1092</td>
+				<td align="right">1091</td>
+				<td>bah</td>
+				<td>1091bah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1092</td>
+			</tr>
+			<tr>
+				<td align="right">1092</td>
+				<td>bee</td>
+				<td>1092bee</td>
+				<td align="right">4/12/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1093</td>
+				<td align="right">1092</td>
+				<td>bee</td>
+				<td>1092bee</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1093</td>
+			</tr>
+			<tr>
+				<td align="right">1093</td>
+				<td>foo</td>
+				<td>1093foo</td>
+				<td align="right">4/13/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1094</td>
+				<td align="right">1093</td>
+				<td>foo</td>
+				<td>1093foo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1094</td>
+			</tr>
+			<tr>
+				<td align="right">1094</td>
+				<td>fah</td>
+				<td>1094fah</td>
+				<td align="right">4/14/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1095</td>
+				<td align="right">1094</td>
+				<td>fah</td>
+				<td>1094fah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1095</td>
+			</tr>
+			<tr>
+				<td align="right">1095</td>
+				<td>fer</td>
+				<td>1095fer</td>
+				<td align="right">4/15/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1096</td>
+				<td align="right">1095</td>
+				<td>fer</td>
+				<td>1095fer</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1096</td>
+			</tr>
+			<tr>
+				<td align="right">1096</td>
+				<td>boo</td>
+				<td>1096boo</td>
+				<td align="right">4/16/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1097</td>
+				<td align="right">1096</td>
+				<td>boo</td>
+				<td>1096boo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1097</td>
+			</tr>
+			<tr>
+				<td align="right">1097</td>
+				<td>bah</td>
+				<td>1097bah</td>
+				<td align="right">4/17/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1098</td>
+				<td align="right">1097</td>
+				<td>bah</td>
+				<td>1097bah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1098</td>
+			</tr>
+			<tr>
+				<td align="right">1098</td>
+				<td>bee</td>
+				<td>1098bee</td>
+				<td align="right">4/18/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1099</td>
+				<td align="right">1098</td>
+				<td>bee</td>
+				<td>1098bee</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1099</td>
+			</tr>
+			<tr>
+				<td align="right">1099</td>
+				<td>foo</td>
+				<td>1099foo</td>
+				<td align="right">4/19/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1100</td>
+				<td align="right">1099</td>
+				<td>foo</td>
+				<td>1099foo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1100</td>
+			</tr>
+			<tr>
+				<td align="right">1100</td>
+				<td>fah</td>
+				<td>1100fah</td>
+				<td align="right">4/20/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1101</td>
+				<td align="right">1100</td>
+				<td>fah</td>
+				<td>1100fah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1101</td>
+			</tr>
+			<tr>
+				<td align="right">1101</td>
+				<td>fer</td>
+				<td>1101fer</td>
+				<td align="right">4/21/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1102</td>
+				<td align="right">1101</td>
+				<td>fer</td>
+				<td>1101fer</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1102</td>
+			</tr>
+			<tr>
+				<td align="right">1102</td>
+				<td>boo</td>
+				<td>1102boo</td>
+				<td align="right">4/22/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1103</td>
+				<td align="right">1102</td>
+				<td>boo</td>
+				<td>1102boo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1103</td>
+			</tr>
+			<tr>
+				<td align="right">1103</td>
+				<td>bah</td>
+				<td>1103bah</td>
+				<td align="right">4/23/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1104</td>
+				<td align="right">1103</td>
+				<td>bah</td>
+				<td>1103bah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1104</td>
+			</tr>
+			<tr>
+				<td align="right">1104</td>
+				<td>bee</td>
+				<td>1104bee</td>
+				<td align="right">4/24/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1105</td>
+				<td align="right">1104</td>
+				<td>bee</td>
+				<td>1104bee</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1105</td>
+			</tr>
+			<tr>
+				<td align="right">1105</td>
+				<td>foo</td>
+				<td>1105foo</td>
+				<td align="right">4/25/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1106</td>
+				<td align="right">1105</td>
+				<td>foo</td>
+				<td>1105foo</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1106</td>
+			</tr>
+			<tr>
+				<td align="right">1106</td>
+				<td>fah</td>
+				<td>1106fah</td>
+				<td align="right">4/26/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1107</td>
+				<td align="right">1106</td>
+				<td>fah</td>
+				<td>1106fah</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1107</td>
+			</tr>
+			<tr>
+				<td align="right">1107</td>
+				<td>fer</td>
+				<td>1107fer</td>
+				<td align="right">4/27/05 0:00</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1108</td>
+				<td align="right">1107</td>
+				<td>fer</td>
+				<td>1107fer</td>
+				<td align="center">########</td>
+				<td align="center">#NUM!</td>
+				<td align="center">#NUM!</td>
+				<td align="right">1108</td>
+			</tr>
+  	</tbody>
+	</table>
+</div>
+
+</body>
+</html>

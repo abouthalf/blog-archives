@@ -1,0 +1,643 @@
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+<head>
+	<title>Michael Barrett @ Abouthalf.com.  : Understanding Class.js</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="Recipes, Web Development, Reviews, Photos, Links, and Things">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../wp-content/themes/abouthalf/style.css" type="text/css" media="all" />
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="http://blog.abouthalf.com/wp-content/themes/abouthalf/css/fonts/fontawesome/css/font-awesome-ie7.css" type="text/css" media="all" />
+	<![endif]-->
+	<script src="../../wp-content/themes/abouthalf/js/libs/modernizr-2.5.3.min.js"></script>
+	<script src="../../wp-content/themes/abouthalf/js/libs/bootstrap.js"></script>
+</head>
+<body class="single single-post postid-2163 single-format-standard">
+
+<div id="main">
+	<header id="hd">
+		<h1>
+			<a href="../../index.html">Welcome to <em>About<span>Half</span></em></a>
+		</h1>
+		<p>
+			<a href="index.html#ft">
+				menu <i class="icon-arrow-down"></i>
+			</a>
+			-
+			<a href="../../index.html">
+				<i class="icon-home"></i><span class="hide"> http://blog.abouthalf.com</span>
+			</a>
+		</p>
+	</header>
+	<div class="posts">
+	
+				
+	
+		
+											
+						
+						<article id="post-2163" class="format-standard post-2163 post type-post status-publish hentry category-development tag-class-js tag-javascript tag-js">
+			<div class="post-head">
+				<h1 class="post-title sub-header">
+					<a href="index.html" rel="bookmark" title="Permanent Link to Understanding Class.js">
+						Understanding Class.js					</a>
+				</h1>
+				<p class="postmetadata small">
+					<i class="icon-tags"></i> Tags: <a href="../../tag/class-js/index.html" rel="tag">Class.js</a>, <a href="../../tag/javascript/index.html" rel="tag">javascript</a>, <a href="../../tag/js/index.html" rel="tag">js</a><br />					<i class="icon-folder-open"></i> <a href="../../category/development/index.html" rel="category tag">Development</a><br />
+					<i class="icon-calendar"></i> Monday, March 18th, 2013<br />
+										<a href="https://twitter.com/share?url=http://blog.abouthalf.com/development/understanding-class-js/&amp;text=Understanding+Class.js&amp;via=abouthalf"><i class="icon-twitter"></i> Tweet</a><br />
+									</p>
+			</div>
+						<div class="entry total-1201  ">
+				<p>If you do any serious JavaScript development you’ve probably run across John Resig’s &#8220;<a href="http://ejohn.org/blog/simple-javascript-inheritance/">Simple JavaScript Inheritance</a>&#8221; article detailing <em>Class.js</em>, a small library for simulating a classical inheritance in JavaScript.</p>
+<p>It’s an elegant bit of code, powerful but small. When I was first learning JavaScript deeply, I pored over this article and the code, line by line, until I understood it thoroughly. That proved to be a good exercise. Every once in a while I go through it again as a refresher.</p>
+<p>Class.js uses many subtle and powerful JavaScript idioms in under 100 lines of code (including comments). And even though John’s article explains his intentions and the trickier bits, an experienced JavaScript programmer can still find it difficult to follow.</p>
+<p>Recently I re-familiarized myself with Class.js, so this article is my recounting of how <em>I understand</em> how Class.js works. </p>
+<p>This article is long, so I’ve broken into sections:</p>
+<ol>
+<li>
+<p><strong><a href="index.html#section-what-for">What is Class.js for?</a></strong></p>
+<p>Describes the problem Class.js attempts to solve.</p>
+</li>
+<li>
+<p><strong><a href="index.html#section-overview">Overview of Class.js</a></strong></p>
+<p>Describing the Class.js API and how it works.</p>
+</li>
+<li>
+<p><strong><a href="index.html#section-line-by-line">Line by line</a></strong></p>
+<p>A review of some of the JavaScript techniques used.</p>
+</li>
+</ol>
+<h2 id="section-what-for">What is Class.js for?</h2>
+<p>Above I describe Class.js as used for “simulating classical inheritance” in JavaScript. So what is that and why would you want that? </p>
+<p>JavaScript, PHP, Java, Ruby, and many, many other programming languages allow programmers to define arbitrary “objects” to contain data and act upon that data. An object might represent something tangible, like a user or an invoice, or it may be more abstract, like a color. Objects allow a programmer to think of the problem they’re trying to solve in big conceptual chunks and break up their work into smaller units which can be easily understood and manipulated. Objects are sets of related information or data, and methods to act on or manipulate that data. </p>
+<p>A classical language, like Java, defines these objects differently than a prototypical language, like JavaScript.</p>
+<p>In classical programming languages, a class is a definition, or blueprint, for an object. When you hear ‘class’ think ‘classification’. You might <em>classify</em> a user in your program as having certain attributes like a user name, an email, or a password. Since all users are more or less the same, differing only in their particulars (my name is not your name, but we both have names), classes provide a way to define what all users are like in one place. When you create a new user, you create an instance of the user class; you create a new object which has the user class as its definition.</p>
+<p>In JavaScript there are no classes, only objects. Everything in JavaScript is an object. Strings of text are objects, numbers are objects, functions are objects, dates are objects. Everything is an object. If you want a new object with specific properties, you can just create a new object with those properties.</p>
+<pre><code>var user = {
+    “name”: “Bob Roberts”,
+    “email”: “bob@example.com”,
+    “password”: “dobolina”
+};
+</code></pre>
+<p>If you want to make another user object, you can just create another object.</p>
+<pre><code>var otherUser = {
+    “name”: “Malcolm Reynolds”,
+    “email”: “captain@example.com”,
+    “password”: “unificationday”
+}
+</code></pre>
+<p>If you only need one or two of these user objects, this is easy. But what if you want to make hundreds? JavaScript allows any function to be used as a constructor for new objects. That means you can “define” an object within the body of a function.</p>
+<pre><code>function User(name, email, password) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
+}
+
+var user = new User(“Malcolm Reynolds”, “captain@example.com”,”unificationday”);
+var otherUser = new User(“Bob Roberts”, “bob@example.com”, “dobolina”);
+</code></pre>
+<p>The <code>new</code> keyword tells JavaScript that you want to use the function as a constructor &#8211; to construct new objects. Without the <code>new</code> keyword the function would just set variables in the containing scope (probably the browser window)…so you wouldn’t get a new object.</p>
+<p>Constructors streamline the creation of new objects which share properties and also allow you to compare constructed objects with the <code>instanceof</code> operator. We can know if “user” and “otherUser” were created by the same constructor </p>
+<pre><code>user instanceof User &amp;&amp; otherUser instanceof User == true; 
+</code></pre>
+<p>Classical languages have constructors too. Constructors are called automatically when an instance of a class is created. Classical constructors only exist as a part of a class definition, whereas in JavaScript any old function can be a constructor if you want it to.</p>
+<p>JavaScript allows for arbitrary definition of objects without classes. Constructor functions for times when more regularly defined or typed objects are required. Classical languages require classes to define new objects.</p>
+<p>From these examples it might look like JavaScript has a superior, more flexible, and expressive system for making new objects. But there’s more to objects than constructors and classes.</p>
+<h3>Inheritance</h3>
+<p>If all of the users in your program are the same, then you only need one class or one constructor function to deal with them all. Once you have different types of users (pilots, mechanics, doctors) then you need a way to specify their differences (training, tools), while reusing the things they share (name, email, password).</p>
+<p>In a classical language we would create a new class of user which <em>extends</em> the User class (in pseudo-code): </p>
+<pre><code>public class User {
+    public String name;
+    public String email;
+    public String password
+}
+
+public class Pilot extends User {
+    public String license;
+}
+</code></pre>
+<p>Our new <code>Pilot</code> class gets all of the <code>User</code> features for “free” while only having to define the parts that are different, the <code>Pilot</code> <code>license</code>. A call to <code>new Pilot()</code> gets a <code>Pilot</code> object with all the properties of a <code>User</code> object.</p>
+<p>In JavaScript, there are no classes, only objects. So how do you create an object based upon another object? With another object.</p>
+<p>A JavaScript object can have a <code>prototype</code> &#8211; an object which an object is based upon. Using our User constructor from above, we can make a new user:</p>
+<pre><code>var userPrototype = new User();
+</code></pre>
+<p>This user will not have a <code>name</code>, <code>email</code>, or a <code>password</code>.</p>
+<p>We can then make a new constructor function for pilots:</p>
+<pre><code>function Pilot(name, license) {
+    this.name = name;
+    this.license = license;
+};
+</code></pre>
+<p>And then we can define the Pilot’s prototype to be an object created by the User function, a user object:</p>
+<pre><code>Pilot.prototype = userPrototype
+</code></pre>
+<p>Now any new user we create with the Pilot constructor function will have all of the same properties as any user.</p>
+<p>But.</p>
+<p>What about the <code>email</code> and <code>password</code> properties? Oops. We didn’t include those in the Pilot constructor function. Maybe it should have been written like this?</p>
+<pre><code>function Pilot(name, email, password, license) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.license = license;
+}
+</code></pre>
+<p>Or maybe we should have written things this way?</p>
+<pre><code>function User = function() {};
+User.prototype = {
+    name: ‘’;
+    email: ‘’;
+    password: ‘’
+};
+
+var pilotProto = {license: ‘’};
+var user = new User();
+for(key in pilotProto) {
+    user[key] = pilotProto[key];
+}
+function Pilot() {};
+Pilot.prototype = user;
+</code></pre>
+<p>You can see how this can start to get cumbersome, especially compared to the tidy classical example. Every time you want to create an object based upon a user, you must create a user to use as a prototype. This is powerful &#8211; any object can extend any other object. You can add features to all instances created by any constructor by manipulating the constructor function’s prototype. Very powerful, but, it’s messy. </p>
+<h3>And so</h3>
+<p>Class.js hides all of this constructor function creating, object prototyping, and property copying behind a single function called <code>extend</code>. That’s the big win. It makes all of the above stuff simple by wrapping it into generic code and establishing a convention for constructors to follow when used for creating prototypes. </p>
+<h4>Learn more about JavaScript’s object model</h4>
+<p>The JavaScript object model is powerful and very flexible. The examples I have above are very basic and only serve to illustrate how object inheritance can be somewhat cumbersome when things get complicated.</p>
+<p>The Mozilla Developer Network has a great article which goes into depth about <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Details_of_the_Object_Model">JavaScript’s object model</a> and compares it to a classical object model for reference. It’s a clearly written article and a great reference.</p>
+<h2 id="section-overview">Overview of Class.js</h2>
+<p>When using Class.js you pass an object to the static <code>extend</code> method. Then <code>extend</code> returns a new constructor function whose prototype has the same properties and methods as the object you provided. The newly returned constructor has its own copy of the <code>extend</code> method so that you may extend <em>this</em> constructor as well. It looks like this:</p>
+<pre><code>var piratePrototype = {
+    eyepatch: true,
+    talk: function() {
+        return “yar”;
+    }
+};
+var Pirate = Class.extend(piratePrototype);
+
+var blackbeard = new Pirate();
+blackbeard.talk(); // returns “yar” 
+
+var spacePiratePrototype = {
+    blaster: true,
+    blast: function() {
+        return “zap”;
+    }
+};
+var SpacePirate = Pirate.extend();
+
+var han = new SpacePirate();
+if (han.blaster) {
+    han.blast(); // returns “zap”
+    han.talk(); // returs “yar”
+}
+</code></pre>
+<p>Let&#8217;s walk through how Class.js works</p>
+<h3>The &#8220;Class&#8221; class</h3>
+<p>Class.js first creates a generic, empty constructor function called <code>Class</code> and assigns it to the global scope. <code>Class</code> does nothing, it is merely establishes a base object to extend. </p>
+<p>If you inspect a constructor function named <code>MyConstructor</code> created with Class.js in your browser’s console you will find the following to be true. </p>
+<pre><code>MyConstructor instanceof Class
+</code></pre>
+<h3>Extending</h3>
+<p>After defining <code>Class</code>, the <code>extend</code> method is defined. <code>extend</code> does all of the important work of creating constructors which inherit the right prototype. </p>
+<p><code>extend</code> accepts a generic object as its only parameter. This generic object will contain the properties and methods (functions) shared by all objects created by the constructor which <code>extend</code> creates. The provided object can be thought of as a prototype for all objects created by the constructor. </p>
+<p><code>extend</code> is a method attached to the constructor <code>Class</code>. Any constructors created by the <code>extend</code> method will also have an <code>extend</code> method. This allows each constructor to extend itself. So if you create a new constructor like this:</p>
+<pre><code>var MyConstructor = Class.extend({“name”: “Pavel”, “rank”: “Admiral”});
+</code></pre>
+<p>Then the new constructor function <code>MyConstructor</code> will have its own <code>extend</code> method.</p>
+<pre><code>var MyExtendedConstructor = MyConstructor.extend({“wessels”: “nuclear”});
+</code></pre>
+<p>When <code>extend</code> is called on <code>MyConstructor</code>, a new instance of <code>MyConstructor</code> is created. The prototype object is merged with the new instance to create a new, complete prototype object. When <code>MyExtendedConstructor</code> is used to create new objects (as a constructor) the properties of both MyConstructor and MyExtendedConstructor will be included. You will be able to compare objects created by either constructor:</p>
+<pre><code>var admiral  = new MyExtendedConstructor();
+admiral instanceof MyExtendedConstructor == true;
+admiral instanceof MyConstructor == true;
+admiral instanceof Class == true;
+</code></pre>
+<p>It’s important to note that only the constructor functions created by <code>extend</code> have an <code>extend</code> method. Instances do not. The following will not work:</p>
+<pre><code>var m = new MyConstructor();
+m.extend({“photos”: “high energy”}); // fails, extend is undefined
+</code></pre>
+<h3>Super</h3>
+<p>In classical programming languages classes which extend other classes automatically inherit properties and functions of the parent class. </p>
+<p>Here’s a parent class in pseudo-code:</p>
+<pre><code>public class Car {
+    public bool driving = false;
+    public void drive() {
+        this.driving = true;
+    }
+}
+</code></pre>
+<p>Now if we extend that class:</p>
+<pre><code>public class Truck {
+    public bool hauling = false;
+    public void haul() {
+        this.hauling = true;
+        this.drive();
+    }
+}
+</code></pre>
+<p>Notice I get the <code>drive</code> method for free. I don’t have to redefine it. This automatic code reuse is one of the important time saving features of object oriented programming.</p>
+<p>But what if I wanted the Truck class’ drive method to work differently? I could just redefine it in my extended class?</p>
+<pre><code>public class Truck {
+    public bool hauling = false;
+    public void drive() {
+        this.driving = true;
+        this.hauling = true; // whoops. I’ve just recreated the original drive method
+    }
+}
+</code></pre>
+<p>This will work just fine, but now I’ve just recreated the functionality of the original <code>drive</code> method. I’m not saving myself any effort. To reuse the <em>original</em> <code>drive</code> method in my new <code>drive</code> method, I call the <code>drive</code> method on the parent class:</p>
+<pre><code>public class Truck {
+    public bool hauling = false;
+    public void drive() {
+        this.parent.drive();
+        this.hauling = true;
+    }
+}
+</code></pre>
+<p>In JavaScript the same thing can be accomplished with use of a constructor’s prototype.</p>
+<pre><code>function Car() {
+    this.driving = false;
+}
+Car.prototype.drive = function() {this.driving = true;}
+
+function Truck() {
+    this.hauling = false;
+}
+Truck.prototype = new Car();
+Truck.prototype.constructor = Truck;
+Truck.prototype.drive = function() {
+    Car.prototype.drive.call(this);
+}
+
+var t = new Truck();
+t.drive();
+t.driving == true; // set by Car.prototype.drive
+t.hauling == true; // set by Truck.prototype.drive
+</code></pre>
+<p>With this arrangement the <code>drive</code> function of the Truck prototype reuses the <code>drive</code> function of the <code>Car</code> prototype. This works, and successfully reuses code, but it’s a little bit brittle. For example, if I decide to change the name of my <code>Car</code> constructor function to <code>Vehicle</code> and I fail to update my <code>Truck</code> constructor, <code>Truck</code> will no longer work. Class.js works around this brittleness by creating a generic function named <code>_super</code> for each extended method. </p>
+<pre><code>var carPrototype = {
+    driving: false,
+    drive: function() {
+        this.driving: true;
+    }
+};
+Car = Class.extend(carPrototype);
+
+var truckPrototype = {
+    hauling: false.
+    drive: function() {
+        this._super(); // calls the drive method from Car
+        this.hauling = true; 
+    }
+};
+Truck = Car.extend(truckPrototype);
+</code></pre>
+<p>Here, the more generic <code>_super</code> replaces <code>Car.prototype.drive</code>, which is much tidier. It also has another benefit</p>
+<pre><code>var breadTruckPrototype = {
+    cargo: ‘’,
+    drive: function() {
+        this._super(); // calls Truck.drive which calls Car.drive. 2 for 1!
+        this.cargo = “bread”;
+    }
+};
+BreadTruck = Truck.extend(breadTruckPrototype);
+</code></pre>
+<p>The <code>_super</code> method here calls <code>Truck.drive</code>, which calls <code>Car.drive</code> without having to reference multiple specific prototypes by name.</p>
+<h3>Init</h3>
+<p><code>Class.extend</code> generates constructor functions with prototypes you define, but often times you want a constructor function to do some actual work in addition to just creating a new object instance.</p>
+<p>If you create a method named <code>init</code> in the prototype object passed to <code>Class.extend</code>, the constructor function that gets created will call your <code>init</code> method automatically…but <em>only</em> when you’re making new instances, not when you’re extending. It works like this:</p>
+<pre><code>var helmsmanPrototype = {
+    init: function(name, weapon) {
+        this.name = name;
+        this.weapon = weapon || “phaser”;
+    },
+    name: undefined,
+    weapon: undefined
+}
+
+var Helmsman = Class.extend(helmsmanPrototype);
+
+var sulu = new Helmsman(“Sulu”, “sword”);
+var chekov = new Helmsman(“Chekov”);
+</code></pre>
+<p>In the above example, <code>Class.extend</code> creates a constructor function which automatically calls <code>init</code> when a new instance is created. The parameters are passed along automatically as well. </p>
+<p>In the <code>init</code> method above I use the following JavaScript shorthand:</p>
+<pre><code>this.weapon = weapon || “phaser”;
+</code></pre>
+<p>This is a means of setting default values. You could read the line as “If <code>weapon</code> has a value, set <code>this.weapon</code> to that value, otherwise use ‘phaser’”. In the example, <code>chekov</code> uses the default weapon, a phaser, while <code>sulu</code> gets a sword. Because <code>sulu</code> is awesome.</p>
+<h2 id="section-line-by-line">Line by line</h2>
+<p><em>For easy reference, I’ve placed a syntax-highlighted copy of Class.js <a href="../../examples/Class.html">here</a></em>.</p>
+<p>Class.js uses a few clever JavaScript tricks as well as some unusual conventions to accomplish its goals. When I was first learning I found some bits to be completely inscrutable. Once I understood them I reach a new level of JavaScript enlightenment.</p>
+<h3>Anonymous function wrapper</h3>
+<p>The first line of code, line 6, beneath the opening comments, and the last line together form an auto-executing anonymous function. See below with the rest of the code removed:</p>
+<pre><code>(function(){
+ // … the rest of Class.js here
+ })();
+</code></pre>
+<p>Within the first two parentheses a function is defined, which contains all of Class.js. At the end that function is executed. This little trick encloses a bit of functionality in its own scope. No JavaScript executed <em>outside</em> of this anonymous function can effect what’s going on <em>inside</em> that function (JavaScript has function-level scope, instead of block level scope). We’ll see a little later how you can export items within the anonymous function to the containing scope. This pattern is used by jQuery plugin authors, it’s auto-generated by stupid CoffeeScript, and in general is a good idea for small, self-contained libraries.</p>
+<h3>Setting variables</h3>
+<p>On line 7 generic variables for use throughout Class.js are set. It’s considered good practice to declare your variables at the beginning of a JavaScript functions for reasons that relate to how JavaScript is parsed and executed. For those who have to read your code later (including yourself) it’s good practice. The first variable, <code>initializing</code> is used by the <code>extend</code> method, defined later. What’s clever here is the second variable <code>fnTest</code>.</p>
+<pre><code>fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
+</code></pre>
+<p><code>fnTest</code> is assigned the result of a ternary expression. A ternary is a short-hand way of writing the following:</p>
+<pre><code>if (condition == true) {
+    output = ‘condition is true output’;
+} else {
+    output = ‘condition is false output’;
+}
+
+// in ternary form
+output = (condition) ? ‘condition is true output’ : ‘condition is false output’;
+</code></pre>
+<p>This structure allows you to quickly test for a condition, and assign one of two results to a variable based upon that condition. It happens enough in programming that special constructions were created to make it quick to write.</p>
+<p>For <code>fnTest</code> the condition being tested is this:</p>
+<pre><code>/xyz/.test(function(){xyz;})
+</code></pre>
+<p>This is a dense one-line of code. <code>/xyz/</code> is a Regular Expression defined with JavaScript literal syntax. Regular Expression objects have a <code>test</code> method, so this is calling the test method of the literal Regular Expression <code>/xyz/</code>. The <code>test</code> checks to see if the text you provide matches the regular expression, if it matches, it returns <code>true</code>. You can read <code>/xyz/.test()</code> as “tell me if the letters ‘xyz&#8217;, in that order, exist in the text I provide you”. </p>
+<p>The <code>test</code> method expects a string, so if you pass it a number or an object, JavaScript will automatically convert it to a string. Here we’re passing an anonymous function to the <code>test</code> method:</p>
+<pre><code>function(){xyz;}
+</code></pre>
+<p>In JavaScript, functions are objects, and all objects have a <code>toString</code> method. In most reasonably modern browsers, when you call <code>toString</code> on a function object, JavaScript will return the <em>literal text you used to write the function</em>. You can actually look inside the function to see how it was written. So the entire conditional expression is testing for that browser feature. Let’s look at the expression again:</p>
+<pre><code>fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
+</code></pre>
+<p>So, the conditional is testing that result of the <code>toString</code> method of a function returns the body of the function. The Regular Expression is looking for “xyz”, the function body contains “xyz”, if the conditional returns true, then we know we can inspect then inside of a function.</p>
+<p>If that’s true, a new regular expression is returned:</p>
+<pre><code>/\b_super\b/
+</code></pre>
+<p>As discussed in the previous section, <code>Class.extend</code> creates a <code>_super</code> property when extending classes. This new Regular Expression will be used to test if <code>_super</code> is being used within the body of a function.</p>
+<p>If the xyz-function test fails, a generic regular expression is returned which matches everything (<code>test</code> will return true for any string). This is a fall-back for older browsers. If the browser provides a feature, we can take advantage of it, if not, we can use a default case which works for every browser. </p>
+<h3>Exporting to global scope</h3>
+<p>On line 10 the <code>Class</code> constructor function is created.</p>
+<pre><code> this.Class = function(){};
+</code></pre>
+<p>As described above, this function doesn’t do anything, it only serves as a container for the <code>extend</code> method. The interesting bit here is the <code>this</code> keyword prepended to <code>Class</code>. The keyword <code>this</code> refers to the containing scope of the current function. In this case the containing scope is the global or window scope (assuming this is executed in the browser). Assigning <code>Class</code> to <code>this</code> is a more generic means of writing <code>window.Class</code> &#8211; it’s generic in that it doesn’t assume what the global scope is. This can be thought of as “exporting” <code>Class</code> to the global scope. It’s tidier than defining a global variable outside of the anonymous function wrapper.</p>
+<h3>Create prototype</h3>
+<p>The <code>extend</code> method is defined on line 13. Below, on line 18 we see the variable <code>initializing</code> in use while creating the base prototype object. <code>initializing</code> is set to <code>true</code> while the base constructor is called, then set back to <code>false</code>. </p>
+<pre><code>initializing = true;
+var prototype = new this();
+initializing = false;
+</code></pre>
+<p>We’ll see how this works in the constructor function definition below. </p>
+<p>To create the prototype, <code>new this();</code> is called. This (or <code>this</code>) works because <code>this</code> refers to the constructor function <code>Class</code> defined above, <code>extend</code> is defined as a property of the <code>Class</code> function object. If JavaScript were a classical language, you would refer to <code>extend</code> as a “static method”.</p>
+<p>When you create a new constructor function with <code>extend</code> the keyword <code>this</code> will now refer to that new constructor function. This way <code>this</code> always refers to the constructor you’re extending.</p>
+<h3>Super</h3>
+<p>Beginning on line 23 the properties passed into the extend function (the parameter <code>prop</code>) are copied onto the newly created prototype object created by <code>new this()</code> above. The <code>for … in</code> loop iterates over the properties of the <code>prop</code> object. On line 25 values from <code>prop</code> are copied into the new prototype object. But what comes next is a bit hairy.</p>
+<p>This assignment uses another ternary expression, like <code>fnTest</code>above. The assignment and conditional portion in the ternary expression is this:</p>
+<pre><code>prototype[name] = typeof prop[name] == &quot;function&quot; &amp;&amp; typeof _super[name] == &quot;function&quot; &amp;&amp; fnTest.test(prop[name])
+</code></pre>
+<p>There are a number of players here, so let’s identify each:</p>
+<dl>
+<dt> <code>prototype</code></dt>
+<dd>the new based prototype created by calling <code>new this()</code> above.</dd>
+<dt><code>prop</code></dt>
+<dd>the object passed to <code>extend</code> containing the properties and methods to be added to <code>prototype</code></dd>
+<dt><code>_super</code></dt>
+<dd>the current, existing <code>prototype</code> of the parent function, the owner of the <code>extend</code> method which received <code>prop</code> as a parameter.</dd>
+<dt><code>name</code></dt>
+<dd>the string name of the current property being copied</dd>
+</dl>
+<p>The conditional statement checks if both <code>prop</code> and <code>_super</code> have a property with the same <code>name</code>, and that both properties are functions. If so <em>and</em> that function passes <code>fnTest</code> (the function contains the text <code>_super</code>), <em>then</em> a special copy of <code>_super[name]</code> is made and made available to <code>prop[name]</code>. </p>
+<p>If the properties being compared aren’t functions, or don’t pass the <code>fnTest</code> then no special <code>_super</code> function is defined &#8211; if <code>_super</code> is not used, then there’s no reason to do the work.</p>
+<h3>Wrap up</h3>
+<p>Line 47 defines the constructor function that <code>extend</code> will return. The constructor has one job, to check <code>initializing</code> and if it’s <code>false</code>, check for a function called <code>init</code> and call it with any arguments passed to the constructor.</p>
+<pre><code>function Class() {
+  // All construction is actually done in the init method
+  if ( !initializing &amp;&amp; this.init )
+    this.init.apply(this, arguments);
+}
+</code></pre>
+<p>It’s a little confusing that this function is also named “Class” &#8211; the whole thing is named “Class” so how does that work? Here <code>Class</code> is defined within the cope of the <code>extend</code> method, so it doesn’t conflict with the <code>Class</code> function that was explicitly defined in the global scope with <code>this.Class</code>.</p>
+<p>Next the updated <code>prototype</code>, with all the properties and methods from <code>prop</code> added in, is set as the prototype of <code>Class</code>:</p>
+<pre><code>Class.prototype = prototype;
+</code></pre>
+<p>The <code>constructor</code> function of the <code>prototype</code> is explicitly set:</p>
+<pre><code>Class.prototype.constructor = Class;
+</code></pre>
+<p>The <code>extend</code> method is copied (referenced) to the new constructor so it can be extended itself.</p>
+<pre><code>Class.extend = arguments.callee;
+</code></pre>
+<p>The special variable <code>arguments</code> is an array of all the parameters passed to a function. JavaScript creates it automatically whenever a function is called. It has a special property <code>callee</code> which means “the function that received these arguments. Here it refers to <code>extend</code> allowing <code>extend</code> to be applied to the scope the new constructor function.</p>
+<p>Finally the new constructor is returned, ready for business:</p>
+<pre><code>return Class;
+</code></pre>
+			</div>
+		</article>
+		
+										
+							<article id="related" class="post format-standard related-posts">
+			<div class="post-head">
+				<h2 class="post-title"><i class="icon-tags"></i> Related posts</h2>
+				<p class="postmetadata small">
+					Recent posts with tags: <a href="../../tag/class-js/index.html" rel="tag">Class.js</a>, <a href="../../tag/javascript/index.html" rel="tag">javascript</a>, <a href="../../tag/js/index.html" rel="tag">js</a>				</p>
+			</div>
+			<div class="entry">
+				<ul>
+									<li>
+						<p class="big">
+							<a href="../continuing-evidence-mounting-for-the-jquery-backlash/index.html" 
+								rel="bookmark" 
+								title="Permanent link to Continuing evidence mounting for the jQuery backlash">
+								Continuing evidence mounting for the jQuery backlash							</a>
+						</p>
+						<p>Choosing Vanilla JavaScript. via An A List Apart</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../conditional-comments-unsupported-in-ie11s-emulator/index.html" 
+								rel="bookmark" 
+								title="Permanent link to Conditional comments unsupported in IE11‘s emulator">
+								Conditional comments unsupported in IE11‘s emulator							</a>
+						</p>
+						<p>Since version 9, Internet Explorer has included some very good developer tools, including an emulator which allowed you to view a web page using an earlier version. This allowed for you to do quick and dirty testing of your site in various versions of IE. However, IE 11&#8217;s emulator does not support conditional comments. &#8220;Conditional [&hellip;]</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../you-might-not-need-jquery/index.html" 
+								rel="bookmark" 
+								title="Permanent link to You Might Not Need jQuery">
+								You Might Not Need jQuery							</a>
+						</p>
+						<p>You Might Not Need jQuery, maybe. This site provides a quick look-up for native browser implementations of features developers commonly rely on jQuery for. I suspect this is part of the beginning of the jQuery backlash. Of course if jQuery ever gets a build system, like Modernizr, it would be possible to get just, say, [&hellip;]</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../full-stack-javascript-with-mean-and-yeoman/index.html" 
+								rel="bookmark" 
+								title="Permanent link to Full-Stack JavaScript With MEAN And Yeoman">
+								Full-Stack JavaScript With MEAN And Yeoman							</a>
+						</p>
+						<p>Addy Osmani talks about the MEAN stack for web application development and scaffolding applications with Yoeman. MEAN stands for MongoDB, Express, Angular, running atop Node. Neat!</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../fast-tests-are-your-friend/index.html" 
+								rel="bookmark" 
+								title="Permanent link to Fast tests are your friend">
+								Fast tests are your friend							</a>
+						</p>
+						<p>Better TDD Workflow via Exclusive Tests in Jasmine and Mocha.</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../angular-service-or-factory/index.html" 
+								rel="bookmark" 
+								title="Permanent link to Angular service or factory?">
+								Angular service or factory?							</a>
+						</p>
+						<p>Understanding AngularJS&#8217; factories and services as extensions of a provider.</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../scales/index.html" 
+								rel="bookmark" 
+								title="Permanent link to And the scales fell from my eyes">
+								And the scales fell from my eyes							</a>
+						</p>
+						<p>I&#8217;ve always thought of software testing like tooth brushing. Important, necessary, but slightly tedious. I never took to true test-first development because it felt burdensome. On my current project we inherited a big suite of tests implemented in JsTestDriver. All of my impressions of testing remained in tact. JsTestDriver is a good tool, I don&#8217;t [&hellip;]</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../voyeurjs-and-html-and-the-dom/index.html" 
+								rel="bookmark" 
+								title="Permanent link to VoyeurJS and HTML and the DOM">
+								VoyeurJS and HTML and the DOM							</a>
+						</p>
+						<p>VoyeurJS is a small JavaScript library which makes searching the HTML Document Object Model fast, easy, and intuitive while being significantly smaller than jQuery (or even SizzleJS). HTML is a fork of VoyeurJS which allows creation of new DOM elements with Emmet Abbreviations. The syntax of both libraries is so obvious one has to wonder [&hellip;]</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../writing-for-node-and-the-browser/index.html" 
+								rel="bookmark" 
+								title="Permanent link to Writing for node and the browser">
+								Writing for node and the browser							</a>
+						</p>
+						<p>This is a clever little construction makes for easy sharing of JavaScript between NodeJS and the browser..</p>
+					</li>	
+									<li>
+						<p class="big">
+							<a href="../the-tyranny-of-curly-braces-continues/index.html" 
+								rel="bookmark" 
+								title="Permanent link to The tyranny of curly braces continues">
+								The tyranny of curly braces continues							</a>
+						</p>
+						<p>CoffeeScript: less typing, bad readability.</p>
+					</li>	
+							</div>
+		</article>
+											
+					
+						
+						
+
+			
+		
+			
+		
+			
+	</div>
+	<footer id="ft">
+		<a href="../../index.html">
+			<img src="../../wp-content/themes/abouthalf/images/logo.png" alt="Michael Barrett @ Abouthalf.com." class="logo">
+		</a>
+		<p>
+			Michael Barrett @ Abouthalf.com.			<span class="description">Recipes, Web Development, Reviews, Photos, Links, and Things</span>
+		</p>
+		
+		<div>
+			<form method="get" id="search" action="http://duckduckgo.com/">
+			   <input type="hidden" name="sites"value="blog.abouthalf.com"/>
+			   <input type="hidden" name="ka" value="h"/>
+			   <input type="hidden" name="k7" value="#fff"/>
+			   <input type="hidden" name="kj" value="#e0e8f0"/>
+			   <input type="hidden" name="ky" value="e"/>
+			   <input type="hidden" name="kx" value="#369"/>
+			   <input type="hidden" name="kt" value="Palatino"/>
+			   <input type="text" name="q" maxlength="255" placeholder="Search this site with DuckDuckGo"/>
+			   <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+			</form>
+		</div>
+		
+		<nav class="menu-primary-menu-container"><ul id="menu-primary-menu" class="menu"><li id="menu-item-1480" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1480"><a href="../../about/index.html">About</a></li>
+<li id="menu-item-1479" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1479"><a href="../../contact/index.html">Contact</a></li>
+<li id="menu-item-1785" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1785"><a href="../../hosting-with-dreamhost/index.html">Hosting with Dreamhost</a></li>
+<li id="menu-item-1784" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1784"><a href="http://bgrounder.abouthalf.com">B-grounder</a></li>
+<li id="menu-item-1930" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1930"><a href="http://archiesrecipes.com">Archie&#8217;s Recipes</a></li>
+</ul></nav>		
+		<nav>
+			<ul>
+			<li id="categories-2" class="widget widget_categories"><h3 class="widget-title">By Category</h3>		<ul>
+	<li class="cat-item cat-item-8"><a href="../../category/development/index.html" title="Software reviews, development tips and techniques, and notes on software and web development">Development</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="../../category/recipes/index.html" >Recipes</a>
+</li>
+	<li class="cat-item cat-item-123"><a href="../../category/reviews/index.html" title="Reviews of things I like.">Reviews</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="../../category/things/index.html" title="Just general things and stuff.">Things</a>
+</li>
+		</ul>
+</li><li id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href='../../tag/adobe/index.html' class='tag-link-120' title='1 topic' style='font-size: 8pt;'>adobe</a>
+<a href='../../tag/android/index.html' class='tag-link-126' title='2 topics' style='font-size: 10.571428571429pt;'>android</a>
+<a href='../../tag/art/index.html' class='tag-link-153' title='3 topics' style='font-size: 12.285714285714pt;'>art</a>
+<a href='../../tag/boo-hiss/index.html' class='tag-link-157' title='2 topics' style='font-size: 10.571428571429pt;'>boo-hiss</a>
+<a href='../../tag/cocktails/index.html' class='tag-link-38' title='4 topics' style='font-size: 13.714285714286pt;'>cocktails</a>
+<a href='../../tag/coffee/index.html' class='tag-link-64' title='3 topics' style='font-size: 12.285714285714pt;'>coffee</a>
+<a href='../../tag/css/index.html' class='tag-link-66' title='18 topics' style='font-size: 22pt;'>css</a>
+<a href='../../tag/design-2/index.html' class='tag-link-97' title='7 topics' style='font-size: 16.571428571429pt;'>design</a>
+<a href='../../tag/dev/index.html' class='tag-link-96' title='7 topics' style='font-size: 16.571428571429pt;'>dev</a>
+<a href='../../tag/development-2/index.html' class='tag-link-113' title='4 topics' style='font-size: 13.714285714286pt;'>development</a>
+<a href='../../tag/drinks/index.html' class='tag-link-117' title='2 topics' style='font-size: 10.571428571429pt;'>drinks</a>
+<a href='../../tag/facebook/index.html' class='tag-link-56' title='2 topics' style='font-size: 10.571428571429pt;'>facebook</a>
+<a href='../../tag/feedly/index.html' class='tag-link-156' title='2 topics' style='font-size: 10.571428571429pt;'>feedly</a>
+<a href='../../tag/fonts/index.html' class='tag-link-121' title='4 topics' style='font-size: 13.714285714286pt;'>fonts</a>
+<a href='../../tag/food/index.html' class='tag-link-62' title='4 topics' style='font-size: 13.714285714286pt;'>food</a>
+<a href='../../tag/html/index.html' class='tag-link-90' title='5 topics' style='font-size: 14.857142857143pt;'>html</a>
+<a href='../../tag/ie9/index.html' class='tag-link-72' title='3 topics' style='font-size: 12.285714285714pt;'>ie9</a>
+<a href='../../tag/ios/index.html' class='tag-link-116' title='3 topics' style='font-size: 12.285714285714pt;'>iOS</a>
+<a href='../../tag/ipad/index.html' class='tag-link-70' title='3 topics' style='font-size: 12.285714285714pt;'>iPad</a>
+<a href='../../tag/javascript/index.html' class='tag-link-98' title='13 topics' style='font-size: 20.142857142857pt;'>javascript</a>
+<a href='../../tag/js/index.html' class='tag-link-99' title='5 topics' style='font-size: 14.857142857143pt;'>js</a>
+<a href='../../tag/lol/index.html' class='tag-link-134' title='3 topics' style='font-size: 12.285714285714pt;'>lol</a>
+<a href='../../tag/mac-osx/index.html' class='tag-link-49' title='2 topics' style='font-size: 10.571428571429pt;'>mac osx</a>
+<a href='../../tag/markdown/index.html' class='tag-link-124' title='1 topic' style='font-size: 8pt;'>markdown</a>
+<a href='../../tag/nerd/index.html' class='tag-link-130' title='1 topic' style='font-size: 8pt;'>nerd</a>
+<a href='../../tag/nerds/index.html' class='tag-link-52' title='2 topics' style='font-size: 10.571428571429pt;'>nerds</a>
+<a href='../../tag/nodejs/index.html' class='tag-link-132' title='3 topics' style='font-size: 12.285714285714pt;'>nodejs</a>
+<a href='../../tag/pdx/index.html' class='tag-link-93' title='4 topics' style='font-size: 13.714285714286pt;'>pdx</a>
+<a href='../../tag/photos/index.html' class='tag-link-110' title='2 topics' style='font-size: 10.571428571429pt;'>photos</a>
+<a href='../../tag/php/index.html' class='tag-link-44' title='12 topics' style='font-size: 19.571428571429pt;'>php</a>
+<a href='../../tag/pics-2/index.html' class='tag-link-92' title='11 topics' style='font-size: 19.142857142857pt;'>pics</a>
+<a href='../../tag/poe/index.html' class='tag-link-122' title='1 topic' style='font-size: 8pt;'>poe</a>
+<a href='../../tag/politics/index.html' class='tag-link-39' title='1 topic' style='font-size: 8pt;'>politics</a>
+<a href='../../tag/portland/index.html' class='tag-link-84' title='2 topics' style='font-size: 10.571428571429pt;'>portland</a>
+<a href='../../tag/quickies/index.html' class='tag-link-43' title='4 topics' style='font-size: 13.714285714286pt;'>quickies</a>
+<a href='../../tag/reviews-2/index.html' class='tag-link-125' title='2 topics' style='font-size: 10.571428571429pt;'>reviews</a>
+<a href='../../tag/science/index.html' class='tag-link-57' title='2 topics' style='font-size: 10.571428571429pt;'>science</a>
+<a href='../../tag/silex/index.html' class='tag-link-88' title='3 topics' style='font-size: 12.285714285714pt;'>silex</a>
+<a href='../../tag/swag/index.html' class='tag-link-129' title='1 topic' style='font-size: 8pt;'>swag</a>
+<a href='../../tag/toys-2/index.html' class='tag-link-37' title='3 topics' style='font-size: 12.285714285714pt;'>toys</a>
+<a href='../../tag/travel/index.html' class='tag-link-144' title='2 topics' style='font-size: 10.571428571429pt;'>travel</a>
+<a href='../../tag/typekit/index.html' class='tag-link-60' title='2 topics' style='font-size: 10.571428571429pt;'>typekit</a>
+<a href='../../tag/vacation/index.html' class='tag-link-14' title='2 topics' style='font-size: 10.571428571429pt;'>vacation</a>
+<a href='../../tag/web/index.html' class='tag-link-138' title='2 topics' style='font-size: 10.571428571429pt;'>web</a>
+<a href='../../tag/wordpress/index.html' class='tag-link-78' title='2 topics' style='font-size: 10.571428571429pt;'>Wordpress</a></div>
+</li><li id="linkcat-10" class="widget widget_links"><h3 class="widget-title">Vanity</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://twitter.com/device55" rel="me" title="Me @ Twitter">@device55</a></li>
+<li><a href="https://twitter.com/abouthalf" title="Abouthalf.com updates on Twitter">@abouthalf</a></li>
+
+	</ul>
+</li>
+			</ul>
+		</nav>
+	</footer>
+</div>
+
+</body>
+</html>
+

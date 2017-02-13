@@ -1,0 +1,25 @@
+/*Site wide styles*/
+
+/*typfaces*/
+body, h1, h2, h3, h4, h5, h6, h7, p, td, div, li {
+font-family: Georgia, Palatino, Times,"Times New Roman", serif;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+font-weight: lighter;
+}
+
+strong {
+font-weight: bold;
+}
+
+em {
+font-style: italic;
+}
+
+/* page formatting */
+body {
+background-color: #FFFFFF;
+margin: 10px;
+padding:0px;
+}

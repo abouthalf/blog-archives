@@ -1,0 +1,108 @@
+/*Print styles*/
+/*stylesheet applies to all top level pages and 'week' pages*/
+
+/*browser warning - alerts users of uncompliant browsers that their browser may not dislay the page correctly*/
+div#browser-warning {
+display: none;
+visibility: hidden;
+}
+/*page format*/
+
+@page { size 8.5in 11in; margin: 1in}
+
+/*general page formatting */
+body {
+background-color: #FFFFFF;
+border: 1pt solid #EEEEEE;
+padding: 10pt;
+}
+
+/*print typefaces*/
+
+/*general text*/
+h1 {
+font-size: 18pt;
+}
+
+h2 {
+font-size: 16pt;
+}
+
+h3 {
+font-size: 14pt;
+}
+
+h4, h5, h6, h7 {
+font-size: 12pt;
+font-weight: bold;
+}
+
+div, p, li, td {
+font-size: 12pt;
+font-weight: normal;
+}
+
+a:link {
+font-weight: bold;
+text-decoration: underline;
+color:#333399;
+}
+
+
+
+
+div#body div#sidebar h1, div#body div#sidebar h2 {
+font-weight: bold;
+}
+
+div#body div#sidebar h1 {
+font-size: 12pt;
+}
+
+div#body div#sidebar h2 {
+font-size: 12pt;
+}
+
+div#body div#sidebar p, div#body div#sidebar li {
+font-size: 11pt;
+}
+
+.mouse-type {
+font-size: 10pt;
+font-family: Arial, Verdana, sans-serif;
+}
+
+img.r-float {
+float: right;
+margin: 3pt;
+}
+
+img.l-float {
+float: left;
+margin: 3pt;
+}
+
+p.all-clear {
+clear: both;
+}
+
+/*layout - positioning*/
+div#header {
+display: none;
+visibility: hidden;
+}
+
+div#nav {
+display: none;
+visibility: hidden;
+}
+
+
+div#body div#sidebar img {
+display: block;
+padding: 0;
+margin: 0;
+border: 0;
+}
+
+/*layout padding  and margins- seperate from layout for Win IE 5.5 box model problem*/
